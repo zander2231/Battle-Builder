@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<TextView android:id="@+id/model_name" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"/>
+		<TextView android:id="@+id/page_number"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20dp"
+			android:layout_below="@id/model_name"
+			android:layout_alignParentLeft="true"/>
+
+		<!-- <RadioGroup android:id="@+id/damage_style"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:gravity="left"
+	        android:checkedButton="@+id/deal_damage"
+			android:layout_alignParentLeft="true"
+	        android:layout_below="@id/page_number">
+	        <RadioButton
+	            android:text="@string/deal_damage"
+			    android:id="@+id/deal_damage" />
+	        <RadioButton
+	            android:text="@string/remove_damage"
+			    android:id="@+id/remove_damage" />
+	    </RadioGroup>-->
+		<Spinner android:id="@+id/which_column"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/spinner_text"
+			android:layout_alignParentRight="true"
+			android:layout_below="@id/model_name"/>
+		<TextView android:id="@+id/column_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/column"
+			android:textSize="20dp"
+			android:layout_toLeftOf="@id/which_column"
+			android:layout_alignTop="@id/which_column"/>
+		<com.BattleBuilder.widget.NumberPicker android:id="@+id/amount_damage"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20dp"
+			android:layout_alignParentRight="true"
+			android:layout_below="@id/which_column"/>
+		<TextView android:id="@+id/damage_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/damage"
+			android:textSize="20dp"
+			android:layout_toLeftOf="@id/amount_damage"
+			android:layout_alignTop="@id/amount_damage"/>
+		<Button android:id="@+id/finalize_damage"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/finalize_damage"
+			android:layout_alignParentRight="true"
+			android:layout_below="@id/amount_damage"/>
+		<Button android:id="@+id/remove_all"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/remove_all"
+			android:layout_toLeftOf="@id/finalize_damage"
+			android:layout_below="@id/amount_damage"/>
+		<Button android:id="@+id/show_log"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/show_log"
+			android:layout_toLeftOf="@id/remove_all"
+			android:layout_below="@id/amount_damage"/>
+	</RelativeLayout>
+
+    <com.BattleBuilder.widget.DamageGridView android:id="@+id/damage_grid"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"/>
+
+</LinearLayout>

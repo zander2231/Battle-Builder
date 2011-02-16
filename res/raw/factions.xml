@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<factions>
+  <faction name="" display_name="Pick a Faction" fac_symbol="pirate_head.gif"/>
+  <faction name="cygnar" display_name="Kingdom of Cygnar" fac_symbol="cygnar_forum_new.gif"/>
+  <faction name="khador" display_name="Khadoran Empire" fac_symbol="khador_forum_new.gif"/>
+  <faction name="cryx" display_name="Nightmare Isles of Cryx" fac_symbol="cryx_forum_new.gif"/>
+  <faction name="menoth" display_name="Protectorate of Menoth" fac_symbol="menoth_forum_new.gif"/>
+  <faction name="elves" display_name="Retribution of Scyrah" fac_symbol="retribution_forum_new.gif"/>
+  <faction name="trolls" display_name="Trollblood Kriels" fac_symbol="trolls_forum_new.gif"/>
+  <faction name="legion" display_name="Legion of Everblight" fac_symbol="legion_forum_new.gif"/>
+  <faction name="circle" display_name="The Circle Orboros" fac_symbol="circle_forum_new.gif"/>
+  <faction name="skorne" display_name="Skorn Empire" fac_symbol="skorne_forum_new.gif"/>
+  <faction name="highborn" display_name="Highborn Covenent" fac_symbol="mercs_forum_new.gif" merc="true"/>
+  <faction name="dwarfs" display_name="Searforge Commission" fac_symbol="mercs_forum_new.gif" merc="true"/>
+  <faction name="pirates" display_name="Seadog Privateers" fac_symbol="mercs_forum_new.gif" merc="true"/>
+</factions>

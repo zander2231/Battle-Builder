@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<point_levels>
+	<level points="15" casters="1"/>
+	<level points="25" casters="1"/>
+	<level points="35" casters="1"/>
+	<level points="50" casters="1"/>
+	<level points="75" casters="1"/>
+	<level points="75" casters="2"/>
+	<level points="100" casters="2"/>
+	<level points="125" casters="2"/>
+	<level points="150" casters="3"/>
+	<level points="175" casters="3"/>
+	<level points="200" casters="4"/>
+</point_levels>

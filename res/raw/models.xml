@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<models>
+	<model name="Commander Coleman Stryker" fa="caster" pn="108" plays="cygnar" damage="17,0" pc="6" conflicts="Lord Commander Stryker"/>
+	<model name="Lord Commander Stryker" fa="caster" pn="109" plays="cygnar" damage="17" pc="6" conflicts="Commander Coleman Stryker"/>
+	<model name="Captain Victory Haley" pc="5" fa="caster" damage="15" pn="110" plays="cygnar" conflicts="Major Victoria Haley"/>
+	<model name="Major Victoria Haley" pc="5" fa="caster" damage="15" pn="111" plays="cygnar" conflicts="Captain Victory Haley" />
+	<model name="Lieutenant Allister Caine" fa="caster" pn="112" plays="cygnar" damage="15" pc="6" conflicts="Captain Allister Caine"/>
+	<model name="Captain Allister Caine" fa="caster" pn="113" plays="cygnar" damage="15" pc="5" conflicts="Lieutenant Allister Caine"/>
+	<model name="Commander Adept Nemo" fa="caster" pn="114" plays="cygnar" damage="14" pc="6"  conflicts="General Adept Nemo"/>
+	<model name="General Adept Nemo" fa="caster" pn="115" plays="cygnar" damage="14" pc="6"  conflicts="Commander Adept Nemo"/>
+	<model name="Captain E. Dominic Darius" fa="caster" pn="116" plays="cygnar" damage="22" pc="5"/>
+	<model name="Major Markus 'Siege' Brisbane" fa="caster" pn="118" plays="cygnar" damage="18" pc="5"/>
+	<model name="Captain Jeremiah Kraye" fa="caster" pn="119" plays="cygnar" damage="18" pc="6"/>
+	<model name="Captain Kara Sloan" fa="caster" pn="60" plays="cygnar" damage="16" pc="6"/>
+	<model name="Charger" fa="u" pn="120" plays="cygnar" grid="14STD" pc="4"/>
+	<model name="Genadier" fa="u" pn="121" plays="cygnar" grid="12STD" pc="5"/>
+	<model name="Hunter" fa="u" pn="122" plays="cygnar" grid="12STD" pc="6"/>
+	<model name="Lancer" fa="u" pn="123" plays="cygnar" grid="14ARC" pc="6"/>
+	<model name="Sentinel" fa="u" pn="124" plays="cygnar" grid="14STD" pc="4"/>
+	<model name="Firefly" fa="u" pn="" plays="cygnar" grid="14STD" pc="5"/>
+	<model name="Thorn" fa="c" pn="125" plays="cygnar" grid="14ARC" pc="8"/>
+	<model name="Centurion" fa="u" pn="126" plays="cygnar" grid="18STD" pc="9"/>
+	<model name="Cyclone" fa="u" pn="?" plays="cygnar" grid="18STD" pc="9"/>
+	<model name="Defender" fa="u" pn="127" plays="cygnar" grid="18STD" pc="9"/>
+	<model name="Hammersmith" fa="u" pn="128" plays="cygnar" grid="18STD" pc="8"/>
+	<model name="Ironclad" pc="7" fa="u" grid="18STD" pn="129" plays="cygnar"/>
+	<model name="Stormclad" fa="u" pn="130" plays="cygnar" grid="18STD" pc="10"/>
+	<model name="Ol' Rowdy" fa="c" pn="131" plays="cygnar" grid="18STD" pc="9"/>
+	<model name="Thunderhead" fa="c" pn="132" plays="cygnar" grid="20STD" pc="12"/>
+	<model name="Arcane Tempest Gun Mages" fa="2" pn="133" plays="cygnar" num="5" pc="6" enables="Arcane Tempest Officer"/>
+	<model name="Arcane Tempest Officer" fa="1" pn="134" plays="cygnar" pc="2" enabled="false"/>
+	<model name="Black 13th Gun Mage Strike Team" fa="1" pn="135" plays="cygnar" num="3" pc="4" damage="5"/>
+    <model name="Long Gunners" fa="2" pn="136" plays="cygnar" num="6,10" pc="6,10"  enables="Long Gunner Officer &amp; Standard"/>
+	<model name="Long Gunner Officer &amp; Standard" fa="1" pn="137" plays="cygnar" pc="2" damage="5" enabled="false"/>
+	<model name="Sword Knights" fa="2" pn="138" plays="cygnar" num="6,10" pc="4,6" enables="Sword Knight Officer &amp; Standard"/>
+	<model name="Sword Knight Officer &amp; Standard" fa="1" pn="139" plays="cygnar" pc="2" enabled="false"/>
+	<model name="Trencher Infantry" fa="2" pn="140" plays="cygnar" num="6,10" pc="6,10" enables="Trencher Officer &amp; Sniper,Trencher Rifle Genadier"/>
+	<model name="Trencher Officer &amp; Sniper" fa="1" pn="141" plays="cygnar" pc="3" damage="5" enabled="false"/>
+	<model name="Trencher Rifle Genadier" fa="2" pn="142" plays="cygnar" num="1,2,3" pc="1,2,3" enabled="false"/>
+	<model name="Trencher Chaingun" fa="2" pn="143" plays="cygnar" pc="2"/>
+	<model name="Trencher Cannon" fa="2" pn="144" plays="cygnar" pc="3"/>
+	<model name="Rangers" fa="2" pn="145" plays="cygnar" pc="5"/>
+	<model name="Stormblade Infantry" fa="2" pn="146" plays="cygnar" pc="5" enables="Stormblade Officer &amp; Standard"/>
+	<model name="Stormblade Officer &amp; Standard" fa="1" pn="147" plays="cygnar" pc="3" enabled="false"/>
+	<model name="Stormguard" fa="2" pn="148" plays="cygnar" num="6,10" pc="6,9"/>
+	<model name="Storm Lance" fa="1" pn="149" plays="cygnar" num="3,5" unit_damage="5" pc="7,11"/>
+	<model name="Field Mechaniks" fa="3" pn="150" plays="cygnar" num="4,6" pc="2,3"/>
+	<model name="Gun Mage Captain Adept" fa="2" pn="151" plays="cygnar" pc="2" damage="5"/>
+	<model name="Stormsmith Stormcaller" fa="3" pn="152" plays="cygnar" pc="1" />
+	<model name="Journeyman Warcaster" fa="1" pn="153" plays="cygnar" pc="3" damage="5"/>
+	<model name="Squire" fa="t" pn="154" plays="cygnar" damage="5" pc="2"/>
+	<model name="Captain Maxwell Finn" fa="c" pn="155" plays="cygnar" damage="5" pc="3"/>
+	<model name="Captain Arlan Strangewayes" fa="c" pn="156" plays="cygnar" damage="5" pc="2"/>
+	<model name="Major Katherine Laddermore" fa="c" pn="157" plays="cygnar" damage="8,5" pc="5"/>
+	<model name="Precursor Knights" fa="2" pn="158" plays="cygnar" num="6,10" pc="5,8" enables="Precursor Officer &amp; Standard" conflicts="thamar,undead" key="morrow"/>
+	<model name="Precursor Officer &amp; Standard" fa="1" pn="159" plays="cygnar" damage="5" pc="2" enabled="false"/>
+	<model name="High Exemplar Kreoss" fa="caster" pn="217" plays="menoth" damage="18" pc="5" conflicts="Grand Exemplar Kreoss"/>
+	<model name="Grand Exemplar Kreoss" fa="caster" pn="218" plays="menoth" damage="18" pc="6" conflicts="High Exemplar Kreoss"/>
+	<model name="The High Reclaimer" fa="caster" pn="219" plays="menoth" damage="18" pc="6" conflicts="Testament of Menoth"/>
+	<model name="Testament of Menoth" fa="caster" pn="220" plays="menoth" damage="18" pc="6" conflicts="The High Reclaimer"/>
+	<model name="Grand Scrutator Severius" fa="caster" pn="221" plays="menoth" damage="16" pc="6" conflicts="Hierarch Severius"/>
+	<model name="Hierarch Severius" fa="caster" pn="222" plays="menoth" damage="16" pc="6" conflicts="Grand Scrutator Severius"/>
+	<model name="Feora, Priestess of the Flame" fa="caster" pn="223" plays="menoth" damage="16" pc="6" conflicts="Feora, Protector of the Flame"/>
+	<model name="Feora, Protector of the Flame" fa="caster" pn="224" plays="menoth" damage="16" pc="6" conflicts="Feora, Priestess of the Flame"/>
+	<model name="The Harbinger of Menoth" fa="caster" pn="225" plays="menoth" damage="17" pc="5" />
+	<model name="High Allegiant Amon ad-Raza" fa="caster" pn="226" plays="menoth" damage="17" pc="6"/>
+	<model name="High Executioner Servath Reznik" fa="caster" pn="227" plays="menoth" damage="17" pc="6"/>
+	<model name="Dervish" fa="u" pn="228" plays="menoth" grid="14STD" pc="4"/>
+	<model name="Devout" fa="u" pn="229" plays="menoth" grid="14STD" pc="5"/>
+	<model name="Redeemer" fa="u" pn="230" plays="menoth" grid="14STD" pc="6"/>
+	<model name="Repenter" fa="u" pn="231" plays="menoth" grid="14STD" pc="4"/>
+	<model name="Revenger" fa="u" pn="232" plays="menoth" grid="14ARC" pc="6"/>
+	<model name="Blessing of Vengeance" fa="c" pn="233" plays="menoth" grid="14ARC" pc="7"/>
+	<model name="Castigator" fa="u" pn="234" plays="menoth" grid="20STD" pc="8"/>
+	<model name="Crusader" fa="u" pn="235" plays="menoth" grid="20STD" pc="6"/>
+	<model name="Guardian" fa="u" pn="236" plays="menoth" grid="20ARC" pc="9"/>
+	<model name="Reckoner" fa="u" pn="237" plays="menoth" grid="20STD" pc="8"/>
+	<model name="Vanquisher" fa="u" pn="238" plays="menoth" grid="20STD" pc="8"/>
+	<model name="Avatar of Menoth" fa="c" pn="239" plays="menoth" grid="21NOC" pc="11"/>
+	<model name="Fire of Salvation" fa="c" pn="240" plays="menoth" grid="20STD" pc="9"/>
+	<!-- <model name="" fa="u" pn="" plays="menoth" damage="" pc=""/>
+	<model name="" fa="" pn="" plays="cygnar,cryx,khador,menoth" damage="" pc=""/> -->
+	<model name="Kaya the Wildborne" pc="6" fa="caster" damage="16" pn="1" plays="circle" conflicts="Kaya the Moonhunter"/>
+	<model name="Kaya the Moonhunter" pc="2" fa="caster" damage="16" pn="2" plays="circle" conflicts="Kaya the Wildborne" enables="Laris"/>
+	<model name="Laris" pc="0" fa="c" spiral="6,6,8" pn="3" plays="circle" enabled="false"/>
+	<model name="Krueger the Stormwrath" pc="5" fa="caster" damage="16" pn="4" plays="circle" conflicts="Krueger the Stormlord"/>
+	<model name="Krueger the Stormlord" pc="5" fa="caster" damage="16" pn="5" plays="circle" conflicts="Krueger the Stormwrath"/>
+	<model name="Baldur the Stonecleaver" pc="5" fa="caster" damage="16" pn="6" plays="circle"/>
+	<model name="Kromac the Ravenous" pc="4" fa="caster" damage="16" pn="7" plays="circle"/>
+	<model name="Morvahna the Autumblade" pc="6" fa="caster" damage="14" pn="8" plays="circle"/>
+	<model name="Mohsar the Desertwalker" pc="5" fa="caster" damage="15" pn="9" plays="circle"/>
+	<model name="Argus" pc="4" fa="u" spiral="7,7,7" pn="10" plays="circle"/>
+	<model name="Gorax" pc="4" fa="u" spiral="7,8,7" pn="11" plays="circle"/>
+	<model name="Woldwatcher" pc="4" fa="u" spiral="7,8,9" pn="12" plays="circle"/>
+	<model name="Woldwyrd" pc="5" fa="u" spiral="8,6,8" pn="13" plays="circle"/>
+	<model name="Gnarlhorn Satyr" pc="8" fa="u" spiral="8,10,8" pn="14" plays="circle"/>
+	<model name="Shadownhorn Satyr" pc="7" fa="u" spiral="7,10,7" pn="15" plays="circle"/>
+	<model name="Pureblood Warpwolf" pc="9" fa="u" spiral="8,8,10" pn="16" plays="circle"/>
+	<model name="Feral Warpwolf" pc="9" fa="u" spiral="8,11,9" pn="17" plays="circle"/>
+	<model name="Woldwarden" pc="9" fa="u" spiral="10,14,11" pn="18" plays="circle"/>
+	<model name="Megalith" pc="11" fa="c" spiral="10,14,11" pn="19" plays="circle"/>
+	<model name="Reeves of Ordoros" pc="6,10" fa="2" pn="20" plays="circle" num="6,10"/>
+	<model name="Wolves of Ordoros" pc="4,6" fa="3" pn="21" plays="circle" num="6,10" enables="Wolves Chieftain &amp; Standard"/>
+	<model name="Wolves Chieftain &amp; Standard" pc="2" fa="1" damage="5" pn="22" plays="circle" enabled="false"/>
+	<model name="Tharn Bloodtrackers" pc="5,8" fa="1" pn="23" plays="circle" num="6,10"/>
+	<model name="Tharn Bloodweavers" pc="5" fa="2" pn="24" plays="circle" num="6"/>
+	<model name="Tharn Ravagers" pc="6,9" fa="2" num="4,6" unit_damage="8" pn="25" plays="circle" enables="Tharn Ravager Chieftain"/>
+	<model name="Tharn Ravager Chieftain" pc="2" fa="1" damage="10" pn="37" plays="circle" enabled="false"/>
+	<model name="Tharn Wolf Riders" fa="1" unit_damage="5" pn="26" plays="circle" num="3,5" pc="6,10" />
+	<model name="Druids of Orboros" pc="7" fa="2" pn="27" plays="circle" num="6" enables="Druid of Orboros Overseer"/>
+	<model name="Druid of Orboros Overseer" pc="2" fa="1" damage="5" pn="28" plays="circle" enabled="false"/>
+	<model name="Druid Stoneward &amp; Woldstalkers" pc="6" fa="2" pn="29" plays="circle" num="6"/>
+	<model name="Sentry Stone &amp; Mannikins" pc="3" fa="2" damage="8" pn="30" plays="circle" num="4"/>
+	<model name="Shifting Stones" pc="2" fa="2" num="3" unit_damage="5" pn="31" plays="circle"/>
+	<model name="Blackclad Wayfarer" pc="2" fa="2" damage="5" pn="32" plays="circle"/>
+	<model name="Lord of the Feast" pc="3" fa="c" damage="8" pn="33" plays="circle"/>
+	<model name="Tharn Ravager White Mane" pc="3" fa="2" damage="8" pn="34" plays="circle"/>
+	<model name="War Wolf" pc="1" fa="3" damage="5" pn="35" plays="circle"/>
+	<model name="Wolf Lord Morraig" pc="5" fa="c" damage="10,5" pn="36" plays="circle"/>
+	<model name="Lylyth, Herald of Everblight" pc="6" fa="caster" damage="15" pn="38" plays="legion" conflicts="Lylyth, Shadow of Everblight"/>
+	<model name="Lylyth, Shadow of Everblight" pc="5" fa="caster" damage="15" pn="39" plays="legion" conflicts="Lylyth, Herald of Everblight"/>
+	<model name="Thagrosh, Prophet of Everblight" pc="5" fa="caster" damage="18" pn="40" plays="legion" conflicts="Thagrosh, the Messiah"/>
+	<model name="Thagrosh, the Messiah" pc="3" fa="caster" damage="20" pn="41" plays="legion" conflicts="Thagrosh, Prophet of Everblight"/>
+	<model name="Vayl, Disciple of Everblight" pc="4" fa="caster" damage="13" pn="42" plays="legion"/>
+	<model name="Rhyas, Sigil of Everblight" pc="6" fa="caster" damage="16" pn="43" plays="legion"/>
+	<model name="Saeryn, Omen of Everblight" pc="5" fa="caster" damage="16" pn="44" plays="legion"/>
+	<model name="Absylonia, Terror of Everblight" pc="5" fa="caster" damage="16" pn="45" plays="legion"/>
+	<model name="Harrier" pc="2" fa="u" spiral="4,5,4" pn="46" plays="legion"/>
+	<model name="Shredder" pc="2" fa="u" spiral="4,4,5" pn="47" plays="legion"/>
+	<model name="Nephilim Protector" pc="5" fa="u" spiral="8,7,7" pn="48" plays="legion"/>
+	<model name="Nephilim Soldier" pc="5" fa="u" spiral="8,7,7" pn="49" plays="legion"/>
+	<model name="Raek" pc="4" fa="u" spiral="6,7,7" pn="50" plays="legion"/>
+	<model name="Teraph" pc="5" fa="u" spiral="6,7,7" pn="51" plays="legion"/>
+	<model name="Seraph" pc="8" fa="u" spiral="8,9,8" pn="52" plays="legion"/>
+	<model name="Angelius" pc="9" fa="u" spiral="8,9,8" pn="53" plays="legion"/>
+	<model name="Carnivean" pc="11" fa="u" spiral="8,12,10" pn="54" plays="legion"/>
+	<model name="Typhon" pc="12" fa="c" spiral="8,9,10" pn="55" plays="legion"/>
+	<model name="Blighted Nyss Archers" pc="5,8" fa="2" pn="56" plays="legion" num="6,10" enables="Nyss Archer Officer &amp; Ammo Porter"/>
+	<model name="Nyss Archer Officer &amp; Ammo Porter" pc="2" fa="1" damage="5" pn="57" plays="legion" enabled="false"/>
+	<model name="Blighted Nyss Legionnaires" pc="4,6" fa="2" pn="58" plays="legion" num="6,10"/>
+	<model name="Blighted Nyss Raptors" pc="6,10" fa="1" num="3,5" unit_damage="5" pn="59" plays="legion"/>
+	<model name="Blighted Nyss Scather Crew" pc="3" fa="2" pn="60" plays="legion" num="3"/>
+	<model name="Blighted Nyss Swordsman" pc="5,8" fa="2" pn="61" plays="legion" num="6,10" enables="Swordsman Abbot &amp; Champion"/>
+	<model name="Swordsman Abbot &amp; Champion" pc="3" fa="1" unit_damage="5" pn="62" plays="legion" num="2" enabled="false"/>
+	<model name="Spawning Vessel" pc="2,3" fa="1" damage="10" pn="63" plays="legion" num="5,7"/>
+	<model name="Blighted Nyss Striders" pc="6" fa="2" pn="64" plays="legion" num="6" enables="Strider Officer &amp; Musician"/>
+	<model name="Strider Officer &amp; Musician" pc="3" fa="1" damage="5" pn="65" plays="legion" num="2" enabled="false"/>
+	<model name="Blighted Ogrun Warmongers" pc="6,9" fa="3" num="3,5" unit_damage="8" pn="66" plays="legion"/>
+	<model name="Blighted Ogrun Warspears" pc="6,9" fa="3" num="3,5" unit_damage="8" pn="67" plays="legion"/>
+	<model name="The Forsaken" pc="2" fa="2" damage="5" pn="68" plays="legion"/>
+	<model name="Incubus" pc="5" fa="2" pn="69" plays="legion" num="5"/>
+	<model name="Blighted Nyss Shephard" pc="1" fa="2" damage="5" pn="70" plays="legion"/>
+	<model name="Warmonger War Chief" pc="3" fa="2" damage="10" pn="71" plays="legion"/>
+	<model name="Strider Deathstalker" pc="2" fa="2" damage="5" pn="72" plays="legion"/>
+	<model name="Blighted Nyss Sorceress &amp; Hellion" pc="4" fa="2" damage="10" pn="73" plays="legion"/>
+	<model name="Master Tormentor Morghoul" pc="6" fa="caster" damage="15" pn="94" plays="skorne" conflicts="Lord Assassin Morghoul"/>
+	<model name="Lord Assassin Morghoul" pc="5" fa="caster" damage="15" pn="95" plays="skorne" conflicts="Master Tormentor Morghoul"/>
+	<model name="Archdomina Makeda" pc="5" fa="caster" damage="16" pn="96" plays="skorne" conflicts="Supreme Archdomina Makeda"/>
+	<model name="Supreme Archdomina Makeda" pc="5" fa="caster" damage="16" pn="97" plays="skorne" conflicts="Archdomina Makeda"/>
+	<model name="Lord Tyrant Hexeris" pc="5" fa="caster" damage="17" pn="98" plays="skorne"/>
+	<model name="Tyrant Xerxis" pc="5" fa="caster" damage="19" pn="99" plays="skorne"/>
+	<model name="Supreme Aptimus Zaal" pc="5" fa="caster" damage="15" pn="100" plays="skorne" enables="Kovaas"/>
+	<model name="Kovaas" pc="0" fa="c" damage="5" pn="101" plays="skorne" enabled="false"/>
+	<model name="Void Seer Mordikaar" pc="5" fa="caster" damage="16" pn="102" plays="skorne"/>
+	<model name="Basilisk Drake" pc="4" fa="u" spiral="7,5,7" pn="103" plays="skorne"/>
+	<model name="Basilisk Krea" pc="4" fa="u" spiral="7,5,9" pn="104" plays="skorne"/>
+	<model name="Cyclops Brute" pc="5" fa="u" spiral="7,8,7" pn="105" plays="skorne"/>
+	<model name="Cyclops Savage" pc="5" fa="u" spiral="7,8,7" pn="106" plays="skorne"/>
+	<model name="Cyclops Shaman" pc="5" fa="u" spiral="7,6,9" pn="107" plays="skorne"/>
+	<model name="Bronzeback Titan" pc="10" fa="u" spiral="9,14,10" pn="108" plays="skorne"/>
+	<model name="Rhinodon" pc="7" fa="u" spiral="7,11,9" pn="109" plays="skorne"/>
+	<model name="Titan Cannoneer" pc="9" fa="u" spiral="9,10,7" pn="110" plays="skorne"/>
+	<model name="Titan Gladiator" pc="8" fa="u" spiral="9,12,9" pn="111" plays="skorne"/>
+	<model name="Molik Karn" pc="11" fa="u" spiral="9,10,9" pn="112" plays="skorne"/>
+	<model name="Cataphract Arcuarii" pc="6,9" fa="2" num="3,5" unit_damage="8" pn="113" plays="skorne"/>
+	<model name="Cataphract Cetrati" pc="8,11" fa="2" num="3,5" unit_damage="8" pn="114" plays="skorne"/>
+	<model name="Immortals" pc="5,8" fa="2" pn="115" plays="skorne" num="6,10"/>
+	<model name="Paingiver Bloodrunners" pc="5" fa="2" pn="116" plays="skorne" num="6"/>
+	<model name="Paingiver Beast Handlers" pc="2,3" fa="2" pn="117" plays="skorne" num="4,6"/>
+	<model name="Praetorian Ferox" pc="7,11" fa="1" num="3,5" unit_damage="5" pn="118" plays="skorne"/>
+	<model name="Preatorian Karax" pc="4,6" fa="2" pn="119" plays="skorne" num="6,10"/>
+	<model name="Preatorian Swordsmen" pc="4,6" fa="3" pn="120" plays="skorne" num="6,10" enables="Praetorian Swordsmen Officer &amp;"/>
+	<model name="Praetorian Swordsmen Officer &amp;" pc="2" fa="1" damage="5" pn="121" plays="skorne" enabled="false"/>
+	<model name="Tyrant Commander &amp; Standard Bearer" pc="3" fa="2" damage="8,5" pn="122" plays="skorne"/>
+	<model name="Venator Reivers" pc="5,9" fa="3" pn="123" plays="skorne" num="6,10"/>
+	<model name="Venator Catapult Crew" pc="3" fa="2" pn="124" plays="skorne"/>
+	<model name="Agonizer" pc="2" fa="1" damage="8" pn="125" plays="skorne"/>
+	<model name="Ancestral Guardian" pc="2" fa="2" damage="8" pn="126" plays="skorne"/>
+	<model name="Extoller Soulward" pc="2" fa="2" damage="5" pn="127" plays="skorne"/>
+	<model name="Paingiver Bloodrunner Master Tormentor" pc="2" fa="2" damage="5" pn="128" plays="skorne"/>
+	<model name="Void Spirit" pc="2" fa="2" damage="5" pn="129" plays="skorne"/>
+	<model name="Tyrant Rhadiem" pc="5" fa="c" damage="10,5" pn="130" plays="skorne"/>
+	<model name="Madrak Ironhide, Thornwood Chieftan" pc="6" fa="caster" damage="18" pn="131" plays="trolls" conflicts="Madrak Ironhide, World Ender"/>
+	<model name="Madrak Ironhide, World Ender" pc="5" fa="caster" damage="18" pn="132" plays="trolls" conflicts="Madrak Ironhide, Thornwood Chieftan"/>
+	<model name="Hoarluk Doomshaper, Shaman of the Gnarls" pc="7" fa="caster" damage="16" pn="133" plays="trolls" conflicts="Hoarluk Doomshaper, Rage of Dhunia"/>
+	<model name="Hoarluk Doomshaper, Rage of Dhunia" pc="6" fa="caster" damage="16" pn="134" plays="trolls" conflicts="Hoarluk Doomshaper, Shaman of the Gnarls"/>
+	<model name="Grissel Bloodsong, Fell Caller" pc="5" fa="caster" damage="17" pn="135" plays="trolls"/>
+	<model name="Grim Angus" pc="6" fa="caster" damage="17" pn="136" plays="trolls"/>
+	<model name="Borka Kegslayer" pc="5" fa="caster" damage="18" pn="137" plays="trolls" enables="Pyg Keg Carrier"/>
+	<model name="Pyg Keg Carrier" pc="0" fa="c" damage="5" pn="138" plays="trolls" enabled="false"/>
+	<model name="Calandra Truthsayer, Oracle of the Glimmerwood" pc="5" fa="caster" damage="16" pn="139" plays="trolls"/>
+	<model name="Pyre Troll" pc="4" fa="u" spiral="7,8,7" pn="140" plays="trolls"/>
+	<model name="Slag Troll" pc="6" fa="u" spiral="7,8,7" pn="141" plays="trolls"/>
+	<model name="Troll Axer" pc="6" fa="u" spiral="7,8,7" pn="142" plays="trolls"/>
+	<model name="Trol Bouncer" pc="5" fa="u" spiral="7,8,7" pn="143" plays="trolls"/>
+	<model name="Troll Impaler" pc="5" fa="u" spiral="7,8,7" pn="144" plays="trolls"/>
+	<model name="Winter Troll" pc="5" fa="u" spiral="7,8,7" pn="145" plays="trolls"/>
+	<model name="Dire Troll Blitzer" pc="9" fa="u" spiral="9,10,9" pn="146" plays="trolls"/>
+	<model name="Dire Troll Mauler" pc="9" fa="u" spiral="9,10,9" pn="147" plays="trolls"/>
+	<model name="Earthborn Dire Troll" pc="10" fa="u" spiral="10,11,11" pn="148" plays="trolls"/>
+	<model name="Mulg the Ancient" pc="12" fa="u" spiral="9,13,12" pn="149" plays="trolls"/>
+	<model name="Kriel Warriors" pc="4,6" fa="3" pn="150" plays="trolls" num="6,10" enabled="Kriel Warrior Caber Thrower,Kriel Warrior Standard &amp; Piper"/>
+	<model name="Kriel Warrior Caber Thrower" pc="1,2,3" fa="3" pn="151" plays="trolls" num="1,2,3" enabled="false"/>
+	<model name="Kriel Warrior Standard &amp; Piper" pc="2" fa="1" pn="152" plays="trolls" num="2" enabled="false"/>
+	<model name="Krielstone Bearer &amp; Stone Scribes" pc="3,4" fa="1" pn="153" plays="trolls" num="4,6" enables="Stone Scribe Elder"/>
+	<model name="Stone Scribe Elder" pc="1" fa="1" damage="5" pn="154" plays="trolls" enabled="false"/>
+	<model name="Thumper Crew" pc="3" fa="2" pn="155" plays="trolls" num="3"/>
+	<model name="Trollkin Champions" pc="6,10" fa="2" num="3,5" unit_damage="8" pn="156" plays="trolls"/>
+	<model name="Trollkin Fennblades" pc="5,8" fa="2" pn="157" plays="trolls" num="6,10"/>
+	<model name="Long Riders" pc="7,11" fa="1" num="3,5" unit_damage="8" pn="158" plays="trolls"/>
+	<model name="Trollkin Runeshapers" pc="4" fa="2" num="3" unit_damage="5" pn="159" plays="trolls"/>
+	<model name="Scattergunners" pc="5,8" fa="2" pn="160" plays="trolls" num="6,10"/>
+	<model name="Pyg Burrowers" pc="4,6" fa="1" pn="161" plays="trolls" num="6,10"/>
+	<model name="Pyg Bushwhackers" pc="5,8" fa="2" pn="162" plays="trolls" num="6,10"/>
+	<model name="Fell Caller" pc="3" fa="2" damage="8" pn="163" plays="trolls"/>
+	<model name="Stone Scribe Chronicler" pc="2" fa="1" damage="5" pn="164" plays="trolls"/>
+	<model name="Trollkin Champion Hero" pc="3" fa="2" damage="8" pn="165" plays="trolls"/>
+	<model name="Troll Whelps" pc="2" fa="3" pn="166" plays="trolls" num="5"/>
+	<model name="Horthol, Long Rider Hero" pc="5" fa="c" damage="10,8" pn="167" plays="trolls"/>
+	<model name="Magnus the Traitor" fa="caster" pn="160" plays="cryx,khador,menoth" damage="17" pc="6" conflicts="Magnus the Warlord" merc="true" enables="merc_jacks,Renegade"/>
+	<model name="Magnus the Warlord" fa="caster" pn="161" plays="cryx,khador,menoth,skorne" damage="17" pc="6" conflicts="Magnus the Traitor" merc="true" enables="merc_jacks,Renegade"/>
+	<model name="Ashlnn D'Elyse" fa="caster" pn="162" plays="cygnar,menoth" damage="14" pc="6" enables="merc_jack" merc="true" />
+	<model name="Renegade" fa="2" pn="163" plays="cryx,khador,menoth" grid="14ARC" pc="6"/>
+	<model name="Talon" fa="u" pn="164" plays="cygnar,cryx,khador,menoth" grid="14STD" pc="4" key="merc_jack" enabled="false"/>
+	<model name="Vanguard" fa="u" pn="165" plays="cygnar,cryx,khador,menoth" grid="14STD" pc="5" key="merc_jack" enabled="false"/>
+	<model name="Mangler" fa="u" pn="166" plays="cygnar,cryx,khador,menoth" grid="18STD" pc="8" key="merc_jack" enabled="false"/>
+	<model name="Mule" fa="u" pn="167" plays="cygnar,cryx,khador,menoth" grid="18STD" pc="8" key="merc_jack" enabled="false"/>
+	<model name="Nomad" fa="u" pn="168" plays="cygnar,cryx,khador,menoth" grid="18STD" pc="6" key="merc_jack" enabled="false"/>
+	<model name="Steelhead Halberdiers" fa="3" pn="169" plays="cygnar,cryx,khador,menoth" pc="4,6" num="6,10"/>
+	<model name="Steelhead Heavey Cavalry" fa="1" pn="170" plays="cygnar,cryx,khador,menoth" num="3,5" unit_damage="5" pc="6,10"/>
+	<model name="Alexia Ciannor &amp; Risen" fa="c" pn="171" plays="cygnar,khador" damage="5" pc="5" key="undead"/>
+	<model name="Sam &amp; the Devil Dogs" fa="c" pn="173" plays="cygnar,menoth" damage="5" pc="5,7" num="6,10" enables="merc_jack"/>
+	<model name="Croe's Cutthroats" fa="c" pn="175" plays="cryx,khador,menoth" pc="7,10" num="6,10"/>
+	<model name="Cylena &amp; Nyss Hunters" fa="c" pn="176" plays="cygnar,cryx,khador,trolls,circle" damage="5" pc="7,10" num="7,10"/>
+	<model name="Boomhowler &amp; Co." fa="c" pn="177" plays="cygnar,cryx,khador,trolls" damage="8" pc="6,9" num="6,10"/>
+	<model name="Reinholdt" fa="c" pn="178" plays="cygnar,khador" pc="1"/>
+	<model name="Anastasia di Bray" fa="c" pn="179" plays="cygnar,menoth" damage="5" pc="2"/>
+	<model name="Gorman di Wulfe" fa="c" pn="180" plays="cygnar,cryx,khador,menoth" damage="5" pc="2"/>
+	<model name="Kell Bailoch" fa="c" pn="181" plays="khador,menoth" damage="5" pc="2"/>
+	<model name="Orin Midwinter" fa="c" pn="182" plays="cryx,khador,menoth" damage="5" pc="2"/>
+	<model name="Rhupert Carvolo" fa="c" pn="183" plays="cygnar,menoth" damage="5" pc="2"/>
+	<model name="Stannis Brocker" fa="c" pn="184" plays="cygnar,cryx,khador,menoth" damage="10" pc="4"/>
+	<model name="Captain Bartolo Montador" fa="caster" pn="185" plays="pirates,cygnar,cryx,khador,menoth" damage="17" pc="5" enables="merc_jack" merc="true" />
+	<model name="Captaini Phinneus Shae" fa="caster" pn="186" plays="pirates" damage="16" pc="6"  enables="merc_jack,The Commodore"/>
+	<model name="Fiona the Black" fa="caster" pn="187" plays="cygnar,cryx,khador,pirates" damage="15" pc="6" enables="merc_jack" conflicts="morrow" merc="true" key="thamar" />
+	<model name="Buccaneer" fa="u" pn="188" plays="cygnar,cryx,khador,menoth,pirates" grid="14STD" pc="3" key="merc_jack" enabled="false"/>
+	<model name="Freebooter" fa="u" pn="189" plays="cygnar,cryx,khador,menoth,pirates" grid="18STD" pc="6" key="merc_jack" enabled="false"/>
+	<model name="Mariner" fa="u" pn="190" plays="cygnar,cryx,khador,menoth,pirates" grid="18STD" pc="8" key="merc_jack" enabled="false"/>
+	<model name="Sea Dog Crew" fa="u" pn="191" plays="cygnar,cryx,khador,menoth,pirates" pc="5,8" num="6,10" enables="Mr. Walls, Quartermaster,Sea Dog Rifleman"/>
+	<model name="Mr. Walls, Quartermaster" fa="c" pn="192" plays="cygnar,cryx,khador,menoth,pirates" damage="5" pc="2" enabled="false"/>
+	<model name="Sea Dog Rifleman" fa="u" pn="193" plays="cygnar,cryx,khador,menoth,pirates" pc="1,2,3" num="1,2,3" enabled="false"/>
+	<model name="Sea Dog Deck Gun" fa="2" pn="194" plays="cygnar,cryx,khador,menoth,pirates" pc="2"/>
+	<model name="Press Gangers" fa="2" pn="195" plays="cygnar,cryx,khador,menoth,pirates" pc="4,6" num="6,10"/>
+	<model name="The Commodore" fa="c" pn="196" plays="pirates" damage="10" pc="4" enabled="false"/>
+	<model name="Lady Aiyana &amp; Master Holt" fa="c" pn="198" plays="cygnar,khador,menoth,elves,pirates" num="2" unit_damage="5" pc="4"/>
+	<model name="Bloody Bradigan" fa="c" pn="199" plays="cygnar,cryx,khador,menoth,pirates" damage="5" pc="2"/>
+	<model name="Bosun Grogspar" fa="c" pn="200" plays="cygnar,cryx,khador,menoth,pirates" damage="8" pc="2"/>
+	<model name="Dirty Meg" fa="c" pn="201" plays="cygnar,cryx,khador,menoth,pirates" damage="5" pc="2" enables="merc_jack"/>
+	<model name="Doc Killingsworth" fa="c" pn="202" plays="cygnar,cryx,khador,menoth,pirates" damage="5" pc="2"/>
+	<model name="First Mate Hawk" fa="c" pn="203" plays="cygnar,cryx,khador,menoth,pirates" damage="5" pc="2"/>
+	<model name="Lord Rockbottom" fa="c" pn="204" plays="cygnar,khador,menoth,pirates,dwarfs" damage="5,5" pc="2"/>
+	<model name="Master Gunner Dougal MacNaile" fa="c" pn="205" plays="cygnar,khador,menoth,pirates" damage="5" pc="2"/>
+	<model name="Gorten Grunback" fa="caster" pn="206" plays="cygnar,khador,dwarfs" damage="18" pc="7" merc="true" enables="dwarf_jack"/>
+	<model name="Durgen Madhammer" fa="caster" pn="207" plays="cygnar,khador,menoth,dwarfs" damage="16" pc="6" merc="true" enables="dwarf_jack"/>
+	<model name="Grunback Blaster" fa="u" pn="208" plays="cygnar,cryx,khador,menoth,dwarfs" grid="GUNBUNNY" pc="3" key="dwarf_jack" enabled="false"/>
+	<model name="Grunback Gunner" fa="u" pn="209" plays="cygnar,cryx,khador,menoth,dwarfs" grid="GUNBUNNY" pc="3" key="dwarf_jack" enabled="false"/>
+	<model name="Ghordson Driller" fa="u" pn="210" plays="cygnar,cryx,khador,menoth,dwarfs" grid="20STD" pc="6" key="dwarf_jack" enabled="false"/>
+	<model name="Wroughthammer Rockram" fa="u" pn="211" plays="cygnar,cryx,khador,menoth,dwarfs" grid="20STD" pc="8" key="dwarf_jack" enabled="false"/>
+	<model name="Ghordson Basher" fa="u" pn="NA" plays="cygnar,cryx,khador,menoth,dwarfs" grid="BIGBUNNY" pc="7" key="dwarf_jack" enabled="false"/>
+	<model name="Hammerfall Gun Corps" fa="2" pn="212" plays="cygnar,khador,dwarfs" pc="5,8" num="6,10" enables="dwarf_jack"/>
+	<model name="Horgenhold Forge Guard" fa="2" pn="213" plays="cygnar,menoth,dwarfs" pc="5,8" num="6,10"/>
+	<model name="Herne &amp; Jonne" fa="c" pn="214" plays="cygnar,khador,menoth,dwarfs" damage="5,8" pc="3"/>
+	<model name="Ogrun Bokur" fa="2" pn="215" plays="cygnar,cryx,khador,dwarfs" damage="8" pc="3"/>
+	<model name="Thor Steinhammer" fa="c" pn="216" plays="cygnar,khador,dwarfs" damage="5" pc="2" enables="dwarf_jack"/>
+	<model name="Bog Trog Ambushers" pc="5,8" fa="2" pn="74" plays="circle,legion,skorne,trolls" num="6,10"/>
+	<model name="Farrow Bone Grinders" pc="2,3" fa="2" pn="75" plays="circle,legion,skorne,trolls" num="4,6"/>
+	<model name="Farrow Brigands" pc="5,8" fa="1" pn="76" plays="circle,legion,skorne,trolls" num="6,10"/>
+	<model name="Gatorman Posse" pc="6,9" fa="2" num="3,5" unit_damage="8" pn="77" plays="circle,legion,skorne,trolls"/>
+	<model name="Swamp Gobber Bellows Crew" pc="1" fa="1" pn="78" plays="circle,legion,skorne,trolls" num="2"/>
+	<model name="Feralgeist" pc="1" fa="3" pn="79" plays="circle,legion,skorne,trolls"/>
+	<model name="Alten Ashley" pc="3" fa="c" damage="5" pn="80" plays="circle,trolls,cygnar,khador,menoth"/>
+	<model name="Brun Cragback" pc="10" fa="c" damage="8" pn="81" plays="circle,trolls,dwarfs" enables="Lug"/>
+	<model name="Lug" pc="0" fa="c" spiral="8,11,8" pn="82" plays="circle,trolls,dwarfs" enabled="false"/>
+	<model name="Dahlia Hallyr" pc="9" fa="c" damage="8" pn="83" plays="circle,trolls,elves" enables="Skarath"/>
+	<model name="Skarath" pc="0" fa="c" spiral="7,9,9" pn="84" plays="circle,trolls,elves" enabled="false"/>
+	<model name="Gdrun the Wanderer" pc="3" fa="c" damage="8" pn="85" plays="circle,legion,skorne,trolls,cryx,cygnar,khador"/>
+	<model name="Lanyssa Ryssyl" pc="2" fa="c" damage="5" pn="86" plays="circle,trolls,cygnar,elves"/>
+	<model name="Rorsh" pc="10" fa="c" damage="8" pn="87" plays="circle,legion,skorne,trolls" enables="Brine"/>
+	<model name="Brine" pc="0" fa="c" spiral="5,12,9" pn="88" plays="circle,legion,skorne,trolls"/>
+	<model name="Saxon Orrik" pc="2" fa="c" damage="5" pn="89" plays="circle,skorne,trolls,cryx,khador,menoth"/>
+	<model name="Totem Hunter" pc="3" fa="c" damage="8" pn="90" plays="circle,legion,skorne,trolls"/>
+	<model name="Viktor Pendrake" pc="2" fa="c" damage="5" pn="91" plays="circle,trolls,cygnar"/>
+	<model name="Wrong Eye" pc="9" fa="c" damage="8" pn="92" plays="circle,legion,skorne,trolls" enables="Snapjaw"/>
+	<model name="Snapjaw" pc="0" fa="c" spiral="5,14,8" pn="93" plays="circle,legion,skorne,trolls" enabled="false"/>
+</models>

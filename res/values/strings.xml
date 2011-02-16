@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BattleBuilder</string>
+	<string name="army_name">Army Name</string>
+	<string name="points">Points</string>
+	<string name="remaining">Remaining</string>
+	<string name="faction_name">Faction</string>
+    <string name="menu_insert">New Army</string>
+    <string name="menu_delete">Delete Army</string>
+    <string name="point_level">Points: </string>
+    <string name="max_casters">Max Casters: </string>
+    <string name="deal_damage">Deal Damage </string>
+    <string name="remove_damage">Remove Damage </string>
+    <string name="column">Column: </string>
+    <string name="damage">Damage: </string>
+    <string name="finalize_damage">Deal It!</string>
+    <string name="remove_all">Remove All</string>
+    <string name="show_log">Show Log</string>
+    <string name="play_army">Play Army</string>
+</resources>

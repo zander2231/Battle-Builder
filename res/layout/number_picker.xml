@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <Button android:id="@+id/numpick_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/pick_down" />
+    <TextView android:id="@+id/numpick_input"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:singleLine="true"
+        style="?android:attr/textAppearanceLargeInverse"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="30dip"
+        android:background="@drawable/pick_input"
+        android:editable="false" />
+    <Button android:id="@+id/numpick_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/pick_up" />
+</LinearLayout>

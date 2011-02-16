@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grids>
+  <grid name="STANDARD" dimensions="6,6">
+  	<box x="0" y="4" value="L"/>
+  	<box x="1" y="4" value="L"/>
+  	<box x="1" y="3" value="L"/>
+  	<box x="4" y="3" value="R"/>
+  	<box x="4" y="4" value="R"/>
+  	<box x="5" y="4" value="R"/>
+  	<box x="1" y="5" value="M"/>
+  	<box x="2" y="4" value="M"/>
+  	<box x="2" y="5" value="M"/>
+  	<box x="3" y="5" value="C"/>
+  	<box x="4" y="5" value="C"/>
+  	<box x="3" y="4" value="C"/>
+  </grid>
+  <grid name="BONEJACK" dimensions="6,6">
+    <box x="0" y="4" value="H"/>
+  	<box x="0" y="5" value="H"/>
+  	<box x="1" y="4" value="H"/>
+  	<box x="1" y="5" value="C"/>
+  	<box x="2" y="5" value="C"/>
+  	<box x="2" y="4" value="C"/>
+  	<box x="3" y="4" value="A"/>
+  	<box x="3" y="5" value="M"/>
+  	<box x="4" y="4" value="A"/>
+  	<box x="4" y="5" value="M"/>
+  	<box x="5" y="4" value="M"/>
+  	<box x="5" y="5" value="M"/>
+  	<box x="0" y="3" value=""/>
+  	<box x="1" y="3" value=""/>
+  	<box x="2" y="3" value=""/>
+  	<box x="3" y="3" value=""/>
+  	<box x="4" y="3" value=""/>
+  	<box x="5" y="3" value=""/>
+  	<box x="2" y="2" value=""/>
+  	<box x="3" y="2" value=""/>
+  </grid>
+  <grid name="GUNBUNNY" dimensions="6,6">
+    <box x="0" y="5" value="H"/>
+  	<box x="1" y="5" value="H"/>
+  	<box x="2" y="5" value="H"/>
+  	<box x="0" y="4" value="H"/>
+  	<box x="2" y="5" value="C"/>
+  	<box x="3" y="5" value="C"/>
+  	<box x="3" y="4" value="C"/>
+  	<box x="4" y="4" value="M"/>
+  	<box x="4" y="5" value="M"/>
+  	<box x="5" y="5" value="M"/>
+  	<box x="0" y="4" value=""/>
+  	<box x="1" y="3" value=""/>
+  	<box x="2" y="3" value=""/>
+  	<box x="3" y="3" value=""/>
+  	<box x="4" y="3" value=""/>
+  	<box x="2" y="2" value=""/>
+  	<box x="3" y="2" value=""/>
+  	<box x="5" y="4" value=""/>
+  </grid>
+  <grid name="BIGBUNNY" dimensions="6,6">
+    <box x="0" y="5" value="H"/>
+  	<box x="0" y="5" value="H"/>
+  	<box x="1" y="5" value="H"/>
+  	<box x="2" y="5" value="H"/>
+  	<box x="1" y="4" value="C"/>
+  	<box x="2" y="4" value="C"/>
+  	<box x="3" y="4" value="C"/>
+  	<box x="4" y="4" value="C"/>
+  	<box x="3" y="5" value="M"/>
+  	<box x="4" y="5" value="M"/>
+  	<box x="5" y="5" value="M"/>
+  	<box x="5" y="4" value="M"/>
+  	<box x="0" y="3" value=""/>
+  	<box x="1" y="3" value=""/>
+  	<box x="2" y="3" value=""/>
+  	<box x="3" y="3" value=""/>
+  	<box x="4" y="3" value=""/>
+  	<box x="5" y="3" value=""/>
+  	<box x="0" y="2" value=""/>
+  	<box x="1" y="2" value=""/>
+  	<box x="2" y="2" value=""/>
+  	<box x="3" y="2" value=""/>
+  	<box x="4" y="2" value=""/>
+  	<box x="5" y="2" value=""/>
+  	<box x="1" y="1" value=""/>
+  	<box x="2" y="1" value=""/>
+  	<box x="3" y="1" value=""/>
+  	<box x="4" y="1" value=""/>
+  </grid>
+  <grid name="6STD" parent="STANDARD">
+  	<box x="0" y="3" value=""/>
+  	<box x="1" y="2" value=""/>
+  	<box x="2" y="3" value=""/>
+  	<box x="3" y="3" value=""/>
+  	<box x="4" y="2" value=""/>
+  	<box x="5" y="3" value=""/>
+  </grid>
+  <grid name="8STD" parent="6STD">
+  	<box x="2" y="2" value=""/>
+  	<box x="3" y="2" value=""/>
+  </grid>
+  <grid name="10STD" parent="8STD">
+  	<box x="0" y="2" value=""/>
+  	<box x="5" y="2" value=""/>
+  </grid>
+  <grid name="12STD" parent="10STD">
+  	<box x="2" y="1" value=""/>
+  	<box x="3" y="1" value=""/>
+  </grid>
+  <grid name="14STD" parent="12STD">
+  	<box x="1" y="1" value=""/>
+  	<box x="4" y="1" value=""/>
+  </grid>
+  <grid name="16STD" parent="14STD">
+  	<box x="2" y="0" value=""/>
+  	<box x="3" y="0" value=""/>
+  </grid>
+  <grid name="18STD" parent="16STD">
+  	<box x="0" y="1" value=""/>
+  	<box x="5" y="1" value=""/>
+  </grid>
+  <grid name="20STD" parent="18STD">
+  	<box x="1" y="0" value=""/>
+  	<box x="4" y="0" value=""/>
+  </grid>
+  <grid name="22STD" parent="20STD">
+  	<box x="0" y="0" value=""/>
+  	<box x="5" y="0" value=""/>
+  </grid>  
+  <grid name="24STD" parent="22STD">
+  	<box x="0" y="5" value="L"/>
+  	<box x="5" y="5" value="R"/>
+  	<box x="1" y="3" value=""/>
+  	<box x="4" y="4" value=""/>
+  </grid>
+  <grid name="24SECONDARY" parent="24STD">
+  	<box x="2" y="2" value="S"/>
+  	<box x="3" y="2" value="S"/>
+  </grid>
+  <grid name="20ARC" parent="22STD">
+  	<box x="2" y="3" value="A"/>
+  	<box x="3" y="3" value="A"/>
+  </grid>
+  <grid name="21NOC" parent="20STD">
+  	<box x="2" y="3" value="A"/>
+  	<box x="3" y="3" value="A"/>
+  </grid>
+  <grid name="14ARC" parent="16STD">
+  	<box x="2" y="3" value="A"/>
+  	<box x="3" y="3" value="A"/>
+  </grid>
+  <grid name="8GEN" parent="10STD">
+    <track name="shield" value="10" is_damage="true"/>
+  	<box x="2" y="3" value="G"/>
+  	<box x="3" y="3" value="G"/>
+  </grid>
+  <grid name="8GENARC" parent="8GEN">
+  	<box x="2" y="2" value="A"/>
+  	<box x="3" y="2" value="A"/>
+  </grid>
+  <grid name="BASIC_SPIRAL" dimensions="9,8">
+  	<box x="1" y="0" value="M" enabled="false"/>
+  	<box x="1" y="1" value="I" enabled="false"/>
+  	<box x="1" y="2" value="N" enabled="false"/>
+  	<box x="1" y="3" value="D" enabled="false"/>
+  	<box x="7" y="4" value="" enabled="false"/>
+  	<box x="7" y="5" value="" enabled="false"/>
+  	<box x="0" y="5" value="" next_location="2,0"/>
+  	<box x="2" y="5" value="" next_location="1,6"/>
+  	<box x="1" y="6" value=""/>
+  	<box x="1" y="7" value="" next_location="3,0"/>
+  	<box x="4" y="0" value="B" enabled="false"/>
+  	<box x="4" y="1" value="O" enabled="false"/>
+  	<box x="4" y="2" value="D" enabled="false"/>
+  	<box x="4" y="3" value="Y" enabled="false"/>
+  	<box x="7" y="4" value="" enabled="false"/>
+  	<box x="7" y="5" value="" enabled="false"/>
+  	<box x="3" y="5" value="" next_location="5,0"/>
+  	<box x="5" y="5" value="" next_location="4,6"/>
+  	<box x="4" y="6" value=""/>
+  	<box x="4" y="7" value="" next_location="3,0"/>
+  	<box x="7" y="0" value="S" enabled="false"/>
+  	<box x="7" y="1" value="P" enabled="false"/>
+  	<box x="7" y="2" value="I" enabled="false"/>
+  	<box x="7" y="3" value="R" enabled="false"/>
+  	<box x="7" y="4" value="I" enabled="false"/>
+  	<box x="7" y="5" value="T" enabled="false"/>
+  	<box x="6" y="5" value="" next_location="8,0"/>
+  	<box x="8" y="5" value="" next_location="7,6"/>
+  	<box x="7" y="6" value=""/>
+  	<box x="7" y="7" value="" next_location="3,0"/>
+  </grid>
+</grids>

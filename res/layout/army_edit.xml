@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/army_name" />
+		<EditText android:id="@+id/army_name" 
+		  android:layout_width="wrap_content"
+  		  android:layout_height="wrap_content" 
+		  android:layout_weight="1"/>
+	</LinearLayout>
+
+	<RelativeLayout android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<Spinner android:id="@+id/faction_chooser"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingTop="11dp"
+			android:paddingBottom="11dp"
+			android:paddingLeft="7dp"
+			android:paddingRight="50dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"/>
+		<TextView android:id="@+id/points_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/points"
+			android:layout_alignParentTop="true"
+			android:layout_toRightOf="@id/faction_chooser"/>
+		<Spinner android:id="@+id/points_chooser"
+			android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/faction_chooser"
+			android:layout_below="@id/points_text"/>
+		<TextView android:id="@+id/remaining_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/remaining"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentRight="true"/>
+		<TextView android:id="@+id/remaining_amount"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20dp"
+			android:padding="10dp"
+			android:textColor="@color/spinner_text"
+			android:layout_alignParentRight="true" 
+			android:layout_below="@id/remaining_text"
+			android:background="@drawable/remaining_bg"/>
+	</RelativeLayout>
+
+    <ListView android:id="@+id/android:list"
+          android:layout_width="wrap_content"
+          android:layout_height="fill_parent"/>
+  	<TextView android:id="@+id/android:empty"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="What army are you PLAYING?"/>
+
+</LinearLayout>
