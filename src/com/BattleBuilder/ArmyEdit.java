@@ -103,7 +103,9 @@ public class ArmyEdit extends ListActivity
     @Override
     protected void onSaveInstanceState( Bundle outState){
     	super.onSaveInstanceState(outState);
-    	outState.putLong(ListDbAdapter.KEY_ROWID, mRowId);
+    	if( mRowId != null){
+        	outState.putLong(ListDbAdapter.KEY_ROWID, mRowId);
+    	}
     }
     
     @Override

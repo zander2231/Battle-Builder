@@ -698,12 +698,12 @@ public class ModelAdapter extends DefaultHandler
 		
 		holder.faMin.setDataIndex(position);
 		holder.faMin.setCountNoUpdate(current.num_used[FA_INDEX_MIN]);
-		holder.infoMin.setText(current.cost[0] + "pc");
+		holder.infoMin.setText(current.cost[0] + "p");
 		holder.faMin.setEnabled(current.canPlus(FA_INDEX_MIN), current.canMinus(FA_INDEX_MIN));
 		//This means it is a single model
 		if( current.cost[FA_INDEX_MAX] > 0 ){
-			holder.infoMin.setText(current.num_models[FA_INDEX_MIN] + "@" + current.cost[FA_INDEX_MIN] + "pc");
-			holder.infoMax.setText(current.num_models[FA_INDEX_MAX] + "@" + current.cost[FA_INDEX_MAX] + "pc");
+			holder.infoMin.setText(current.num_models[FA_INDEX_MIN] + "@" + current.cost[FA_INDEX_MIN] + "p");
+			holder.infoMax.setText(current.num_models[FA_INDEX_MAX] + "@" + current.cost[FA_INDEX_MAX] + "p");
 			holder.faMax.setDataIndex(position);
 			holder.faMax.setCountNoUpdate(current.num_used[FA_INDEX_MAX]);
 			holder.faMax.setEnabled(current.canPlus(FA_INDEX_MAX), current.canMinus(FA_INDEX_MAX));
@@ -711,7 +711,7 @@ public class ModelAdapter extends DefaultHandler
 			holder.faMax.setVisibility(View.VISIBLE);
 
 			if( current.cost[FA_INDEX_WEAPON] > 0){
-				holder.infoWeapon.setText(current.num_models[FA_INDEX_WEAPON] + "@" + current.cost[FA_INDEX_WEAPON] + "pc");
+				holder.infoWeapon.setText(current.num_models[FA_INDEX_WEAPON] + "@" + current.cost[FA_INDEX_WEAPON] + "p");
 				holder.faWeapon.setDataIndex(position);
 				holder.faWeapon.setCountNoUpdate(current.num_used[FA_INDEX_WEAPON]);
 				holder.faWeapon.setEnabled(current.canPlus(FA_INDEX_WEAPON), current.canMinus(FA_INDEX_WEAPON));
