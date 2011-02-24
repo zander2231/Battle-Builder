@@ -1,5 +1,22 @@
 package com.BattleBuilder.adapter;
 
+/*
+*  Copyright (C) 2010  Alex Badion
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -359,7 +376,7 @@ public class ModelAdapter extends DefaultHandler
 		public int row_id;
 		public String name;
 		public int fa;
-		public DamageGrid damage;//negative numbers for actual damage
+		public DamageGrid damage=null;//negative numbers for actual damage
 		public String page_num;
 		public int enabled = 0;
 		public String[] plays;
@@ -616,21 +633,25 @@ public class ModelAdapter extends DefaultHandler
 	}
 	
 	/*
-	 * @returns a comma deliminated list of model names and amounts
+	 * @returns a comma deliminated list of model names and amounts and a semicolon deliminated list of entries
 	 */	
 	public String packUpArmy(){
 		Iterator<Model> iter= mIncludedModels.iterator();
+		return packUpArmy(iter);
+	}
+	
+	public static String packUpArmy(Iterator<Model> army){
 		Model m;
 		StringBuilder st = new StringBuilder();
-		while(iter.hasNext()){
-			m = iter.next();
+		while(army.hasNext()){
+			m = army.next();
 			st.append(m.name);
 			for(int i=0; i< m.num_used.length; i++){
 				st.append("," + m.num_used[i]);
 			}
 			st.append(";");
 		}
-		return st.toString();
+		return st.toString();		
 	}
 	
 	public String getNameAt(int position){

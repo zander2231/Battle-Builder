@@ -1,5 +1,22 @@
 package com.BattleBuilder;
 
+/*
+*  Copyright (C) 2010  Alex Badion
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 import com.BattleBuilder.adapter.ListDbAdapter;
 
 import android.app.ListActivity;
@@ -19,7 +36,7 @@ public class MainScreen extends ListActivity {
     private static final int ACTIVITY_CREATE=0;
     private static final int ACTIVITY_EDIT=1;
     
-    private static final int INSERT_ID = Menu.FIRST;
+    private static final int CREATE_ID = Menu.FIRST;
     private static final int DELETE_ID = Menu.FIRST + 1;
 
     private ListDbAdapter mDbHelper;
@@ -37,8 +54,8 @@ public class MainScreen extends ListActivity {
     
     private void fillData() {
         // Get all of the rows from the database and create the item list
-        Cursor NotesCursor = mDbHelper.fetchAllArmies();
-        startManagingCursor(NotesCursor);
+        Cursor ListsCursor = mDbHelper.fetchAllArmies();
+        startManagingCursor(ListsCursor);
         
         // Create an array to specify the fields we want to display in the list (only TITLE)
         String[] from = new String[]{
@@ -51,15 +68,15 @@ public class MainScreen extends ListActivity {
         		R.id.army_points};
         
         // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter notes = 
-        	    new SimpleCursorAdapter(this, R.layout.list_row_main, NotesCursor, from, to);
-        setListAdapter(notes);
+        SimpleCursorAdapter lists = 
+        	    new SimpleCursorAdapter(this, R.layout.list_row_main, ListsCursor, from, to);
+        setListAdapter(lists);
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	super.onCreateOptionsMenu(menu);
-        menu.add(0, INSERT_ID, 0, R.string.menu_insert);
+        menu.add(0, CREATE_ID, 0, R.string.menu_insert);
 //        MenuInflater inflater = getMenuInflater();
 //        inflater.inflate(R.menu.option_menu, menu);
     	return true;
@@ -68,8 +85,8 @@ public class MainScreen extends ListActivity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
-        case INSERT_ID:
-            createNote();
+        case CREATE_ID:
+            createArmy();
             return true;
         }
        
@@ -95,8 +112,7 @@ public class MainScreen extends ListActivity {
 		return super.onContextItemSelected(item);
 	}
 	
-    private void createNote() {
-    	
+    private void createArmy() {
         Intent i = new Intent(this, ArmyEdit.class);
         startActivityForResult(i, ACTIVITY_CREATE);
     }

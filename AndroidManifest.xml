@@ -14,6 +14,7 @@
 
     <activity android:name="ArmyEdit"></activity>
     <activity android:name="ModelDamage"></activity>
+    <activity android:name="PlayingList"></activity>
 </application>
 <uses-sdk android:minSdkVersion="4" />
 

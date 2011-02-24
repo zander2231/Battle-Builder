@@ -68,18 +68,7 @@
 			android:text="@string/finalize_damage"
 			android:layout_alignParentRight="true"
 			android:layout_below="@id/amount_damage"/>
-		<Button android:id="@+id/remove_all"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/remove_all"
-			android:layout_toLeftOf="@id/finalize_damage"
-			android:layout_below="@id/amount_damage"/>
-		<Button android:id="@+id/show_log"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/show_log"
-			android:layout_toLeftOf="@id/remove_all"
-			android:layout_below="@id/amount_damage"/>
+
 	</RelativeLayout>
 
     <com.BattleBuilder.widget.DamageGridView android:id="@+id/damage_grid"

@@ -1,5 +1,22 @@
 package com.BattleBuilder.adapter;
 
+/*
+*  Copyright (C) 2010  Alex Badion
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -76,8 +93,6 @@ public class DamageGridAdapter extends DefaultHandler
 		mStateMap.put("grid", new Integer(STATE_IN_GRID));
 		mStateMap.put("box", new Integer(STATE_IN_BOX));
 		mStateMap.put("track", new Integer(STATE_IN_TRACK));
-		
-		
 	}
 
 	private static DamageGridAdapter mSingle = null;
@@ -221,7 +236,7 @@ public class DamageGridAdapter extends DefaultHandler
 		if (state != null)
 		{				
 			if( state.intValue() == STATE_IN_GRID ){
-//				Log.d(TAG, "Faction loaded: " + mGridBuffer.name);
+				mGridBuffer.finalize();
 				mGrids.put( mGridBuffer.name, mGridBuffer );
 			}
 			mState &= ~(state.intValue());
@@ -239,6 +254,7 @@ public class DamageGridAdapter extends DefaultHandler
 		private int mSizeX=0;
 		private int mSizeY=0;
 		private GridLocation[] mGrid = new GridLocation[0];
+		private int mTotalEnabled;
 		
 		private int[][] mWhereToDamage=null;
 		
@@ -288,6 +304,14 @@ public class DamageGridAdapter extends DefaultHandler
 			}
 			
 		}
+		
+		public void finalize(){
+			for( int i=0; i<mGrid.length; i++){
+				if( mGrid[i] !=null && mGrid[i].isEnabled() ){
+					mTotalEnabled++;
+				}
+			}
+		}
 
 		/*package*/ void setBox(int x, int y, GridLocation g){
 			mGrid[ (y * mSizeX) + x ] = g;
@@ -323,6 +347,10 @@ public class DamageGridAdapter extends DefaultHandler
 		
 		public int getNumTracks(){
 			return mWhereToDamage.length;
+		}
+		
+		public int totalEnabled(){
+			return mTotalEnabled;
 		}
 
 	}
@@ -394,7 +422,11 @@ public class DamageGridAdapter extends DefaultHandler
 		}
 		
 		public void setDamaged(int x, int y, boolean damaged){
-			mDamaged[ (y * mSizeX) + x ] = damaged;
+			setDamaged(y * mSizeX + x, damaged);
+		}
+		
+		public void setDamaged(int index, boolean damaged){
+			mDamaged[ index ] = damaged;
 		}
 		
 		public void flipDamaged(int x, int y){
@@ -516,6 +548,23 @@ public class DamageGridAdapter extends DefaultHandler
 				}
 			}
 			return count;
+		}
+
+		public String packUp() {
+			StringBuffer damagedBoxes = new StringBuffer();
+			for( int i=0; i<mDamaged.length; i++){
+				if( mDamaged[i] ){
+					damagedBoxes.append(i + ";");
+				}
+			}
+			return damagedBoxes.toString();
+		}
+
+		public void unpack(String damage) {
+			String[] damagedBoxes = damage.split(";");
+			for( int i=0; i<damagedBoxes.length;i++){
+				setDamaged(Integer.parseInt(damagedBoxes[i]), true);
+			}
 		}
 	}
 		

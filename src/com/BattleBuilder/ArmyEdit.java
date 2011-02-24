@@ -1,5 +1,22 @@
 package com.BattleBuilder;
 
+/*
+*  Copyright (C) 2010  Alex Badion
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 import com.BattleBuilder.adapter.FactionAdapter;
 import com.BattleBuilder.adapter.ListDbAdapter;
 import com.BattleBuilder.adapter.ModelAdapter;
@@ -36,9 +53,9 @@ public class ArmyEdit extends ListActivity
 	private Spinner mPoints;
 	private PointLevelAdapter mPointAdapter;
 	private ModelAdapter mModelAdapter;
-    private Long mRowId;
+    private Long mRowId=0l;
         
-    private ListDbAdapter mDbHelper;
+    private ListDbAdapter mDbHelper=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -76,7 +93,7 @@ public class ArmyEdit extends ListActivity
         	if( extras != null ){
         		mRowId = extras.getLong(ListDbAdapter.KEY_ROWID);
         	}else{
-        		mRowId = null;
+        		mRowId = 0l;
         	}
         }
         
@@ -84,18 +101,18 @@ public class ArmyEdit extends ListActivity
     }
     
     private void populateFields(){
-    	if ( mRowId != null){
-    		Cursor note = mDbHelper.fetchArmy(mRowId);
-    		startManagingCursor(note);
-    		mArmyName.setText(note.getString(note.getColumnIndexOrThrow(ListDbAdapter.KEY_TITLE)));
-    		String factionName = note.getString(note.getColumnIndexOrThrow(ListDbAdapter.KEY_FACTION));
+    	if ( mRowId != 0l){
+    		Cursor army = mDbHelper.fetchArmy(mRowId);
+    		startManagingCursor(army);
+    		mArmyName.setText(army.getString(army.getColumnIndexOrThrow(ListDbAdapter.KEY_TITLE)));
+    		String factionName = army.getString(army.getColumnIndexOrThrow(ListDbAdapter.KEY_FACTION));
 			mModelAdapter.setFaction(factionName);
     		mFactionName.setSelection(mFactionAdapter.getNameIndex(factionName));
-    		int pointLevel = note.getInt(note.getColumnIndexOrThrow(ListDbAdapter.KEY_POINTS));
+    		int pointLevel = army.getInt(army.getColumnIndexOrThrow(ListDbAdapter.KEY_POINTS));
     		int pointIndex = mPointAdapter.getPointsIndex(pointLevel);
 			mModelAdapter.setPointsLevel(pointLevel, mPointAdapter.getCastersAt(pointIndex));
     		mPoints.setSelection(pointIndex);
-    		mModelAdapter.setUpArmy(note.getString(note.getColumnIndexOrThrow(ListDbAdapter.KEY_ARMY)));
+    		mModelAdapter.setUpArmy(army.getString(army.getColumnIndexOrThrow(ListDbAdapter.KEY_ARMY)));
     	}
 		updatePointsTotal();
     }
@@ -103,7 +120,7 @@ public class ArmyEdit extends ListActivity
     @Override
     protected void onSaveInstanceState( Bundle outState){
     	super.onSaveInstanceState(outState);
-    	if( mRowId != null){
+    	if( mRowId != 0l){
         	outState.putLong(ListDbAdapter.KEY_ROWID, mRowId);
     	}
     }
@@ -125,7 +142,7 @@ public class ArmyEdit extends ListActivity
     	String faction = mFactionAdapter.getNameAt(mFactionName.getSelectedItemPosition());
     	int points = mPointAdapter.getPointsAt(mPoints.getSelectedItemPosition());
     	
-    	if( mRowId == null){
+    	if( mRowId == 0l){
     		long id = mDbHelper.createArmy(title, faction, points, mModelAdapter.packUpArmy());
     		if( id > 0){
     			mRowId = id;
@@ -188,9 +205,10 @@ public class ArmyEdit extends ListActivity
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Intent i = new Intent(this, ModelDamage.class);
-        i.putExtra("model_id", position);
-        startActivity(i);
+        // TODO does clicking on an item in this view do anything
+//        Intent i = new Intent(this, ModelDamage.class);
+//        i.putExtra("model_id", position);
+//        startActivity(i);
     }
     
     public static final int PLAY_ARMY_ID = 1;
@@ -215,7 +233,7 @@ public class ArmyEdit extends ListActivity
     
     private void playArmy(){
     	saveState();
-        Intent i = new Intent(this, ArmyEdit.class);
+        Intent i = new Intent(this, PlayingList.class);
         i.putExtra(ListDbAdapter.KEY_ROWID, mRowId);
         startActivity(i);
     }

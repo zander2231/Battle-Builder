@@ -14,7 +14,9 @@
     <string name="column">Column: </string>
     <string name="damage">Damage: </string>
     <string name="finalize_damage">Deal It!</string>
-    <string name="remove_all">Remove All</string>
-    <string name="show_log">Show Log</string>
+    <string name="remove_all">Clear Damage</string>
+    <string name="view_log">View Log</string>
     <string name="play_army">Play Army</string>
+    <string name="end_game">End Game</string>
+    <string name="restart_game">Restart Game</string>
 </resources>
