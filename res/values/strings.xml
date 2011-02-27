@@ -19,4 +19,5 @@
     <string name="play_army">Play Army</string>
     <string name="end_game">End Game</string>
     <string name="restart_game">Restart Game</string>
+    <string name="no_damage">No Damage</string>
 </resources>

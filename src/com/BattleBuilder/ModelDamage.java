@@ -87,13 +87,14 @@ public class ModelDamage extends Activity implements
                 
     	Bundle extras = getIntent().getExtras();
     	if( extras != null ){
-        	long mGameModelID = extras.getLong(GameDBAdapter.KEY_ROWID);
+    		mGameModelID = extras.getLong(GameDBAdapter.KEY_ROWID);
         	Cursor gameModel = mDBHelper.fetchGameItem(mGameModelID);
         	int modelId = gameModel.getInt(gameModel.getColumnIndex(GameDBAdapter.KEY_MODEL_ID));
     		mModel = (ModelAdapter.Model)ModelAdapter.getAdapter(this).getItem(modelId);
     		
     		if( mModel.damage != null){
-    			mGrid = new PlayableDamageGrid(mModel.damage);
+    			int type = gameModel.getInt(gameModel.getColumnIndex(GameDBAdapter.KEY_MODEL_TYPE));
+    			mGrid = new PlayableDamageGrid(mModel.damage, mModel.num_models[type]);
     			mGrid.unpack(gameModel.getString(gameModel.getColumnIndex(GameDBAdapter.KEY_DAMAGE)));
     			mDamageGrid.setGrid( mGrid );
 
@@ -117,7 +118,7 @@ public class ModelDamage extends Activity implements
     		mPageNum.setText("Page Num: " + mModel.page_num);
     	}else{
     		//TODO Error think of correct action to take
-    		mModel = null;
+    		this.finish();
     	}
 	}
     

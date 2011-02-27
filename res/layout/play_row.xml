@@ -9,6 +9,12 @@
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:textSize="15dp" />
+    <TextView android:id="@+id/play_model_num"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:paddingLeft="5dp"
+    	android:gravity="right"
+    	android:textSize="15dp" />
     <TextView android:id="@+id/damage_remaining"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"

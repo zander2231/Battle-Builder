@@ -28,8 +28,8 @@
 	<model name="Ol' Rowdy" fa="c" pn="131" plays="cygnar" grid="18STD" pc="9"/>
 	<model name="Thunderhead" fa="c" pn="132" plays="cygnar" grid="20STD" pc="12"/>
 	<model name="Arcane Tempest Gun Mages" fa="2" pn="133" plays="cygnar" num="5" pc="6" enables="Arcane Tempest Officer"/>
-	<model name="Arcane Tempest Officer" fa="1" pn="134" plays="cygnar" pc="2" enabled="false"/>
-	<model name="Black 13th Gun Mage Strike Team" fa="1" pn="135" plays="cygnar" num="3" pc="4" damage="5"/>
+	<model name="Arcane Tempest Officer" fa="1" pn="134" plays="cygnar" pc="2" enabled="false" damage="5"/>
+	<model name="Black 13th Gun Mage Strike Team" fa="1" pn="135" plays="cygnar" num="3" pc="4" unit_damage="5"/>
     <model name="Long Gunners" fa="2" pn="136" plays="cygnar" num="6,10" pc="6,10"  enables="Long Gunner Officer &amp; Standard"/>
 	<model name="Long Gunner Officer &amp; Standard" fa="1" pn="137" plays="cygnar" pc="2" damage="5" enabled="false"/>
 	<model name="Sword Knights" fa="2" pn="138" plays="cygnar" num="6,10" pc="4,6" enables="Sword Knight Officer &amp; Standard"/>

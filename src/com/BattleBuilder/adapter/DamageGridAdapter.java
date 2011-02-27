@@ -83,6 +83,11 @@ public class DamageGridAdapter extends DefaultHandler
 	public static final String ENABLED="enabled";
 	public static final String IS_DAMAGE="is_damage";
 	public static final String NEXT_LOCATION="next_location";
+	
+	public static final int GRID = 0;
+	public static final int SPIRAL = 1;
+	public static final int TRACK = 2;
+	public static final int UNIT = 3;
 		
 	private static HashMap<String, Integer> mStateMap;
 	private final GridLocation sEmpty;
@@ -250,6 +255,7 @@ public class DamageGridAdapter extends DefaultHandler
 	public class DamageGrid
 	{
 		public String name;
+		public int type;
 		private String mParent=null;
 		private int mSizeX=0;
 		private int mSizeY=0;
@@ -400,17 +406,28 @@ public class DamageGridAdapter extends DefaultHandler
 		private int mSizeX, mSizeY;
 		private int mTrackCurrent=0;
 		private int mTrackMax;
+		private int mNumModels;
 		
-		public PlayableDamageGrid(DamageGrid grid){
-			init(grid);
+		public PlayableDamageGrid(DamageGrid grid, int numModels){
+			init(grid, numModels);
 		}
 
-		/*package*/  void init(DamageGrid grid){
+		/*package*/  void init(DamageGrid grid, int numModels){
 			mGrid = grid;
-			mSizeX = grid.getSizeX();
-			mSizeY = grid.getSizeY();
+			mNumModels = numModels;
+			if( mGrid.type == UNIT){
+				mSizeX = grid.getSizeX();
+				mSizeY = numModels;
+			}else{
+				mSizeX = grid.getSizeX();
+				mSizeY = grid.getSizeY();
+			}
 			mDamaged = new boolean[ mSizeX * mSizeY ];
 			mTrackMax = grid.getTrackDamage();
+		}
+		
+		public int getNumModels(){
+			return mNumModels;
 		}
 
 		public boolean getBoxDamaged(int index){
@@ -431,7 +448,9 @@ public class DamageGridAdapter extends DefaultHandler
 		
 		public void flipDamaged(int x, int y){
 			int index = (y * mSizeX) + x;
-			mDamaged[ index ] = !mDamaged[ index ];
+			if( mGrid.getBox(x, y).isEnabled() ){
+				mDamaged[ index ] = !mDamaged[ index ];
+			}
 		}
 
 		public boolean getEnabled(int x, int y){
@@ -479,7 +498,6 @@ public class DamageGridAdapter extends DefaultHandler
 		}
 		
 		public void dealDamage(int column, int amount){
-			//int[] spotsDamaged = new int[amount];
 			if( mTrackCurrent>0 && mGrid.isTrackDamage()){
 				int remainder = mTrackCurrent - amount;
 				if( remainder >= 0){
@@ -510,14 +528,20 @@ public class DamageGridAdapter extends DefaultHandler
 				}
 				
 				if( mGrid.mDamageVertical){
-					if(++y >= mSizeY && mGrid.mDamageWraps){
+					if(++y >= mSizeY){
+						if( !mGrid.mDamageWraps ){
+							break;
+						}
 						y=0;
 						if( ++x >= mSizeX ){
 							x=0;
 						}
 					}
 				}else{
-					if(++x >= mSizeX && mGrid.mDamageWraps){
+					if(++x >= mSizeX){
+						if( !mGrid.mDamageWraps ){
+							break;
+						}
 						x=0;
 						if( ++y >= mSizeY ){
 							y=0;
@@ -561,6 +585,10 @@ public class DamageGridAdapter extends DefaultHandler
 		}
 
 		public void unpack(String damage) {
+			if( damage.equalsIgnoreCase("")){
+				return;
+			}
+				
 			String[] damagedBoxes = damage.split(";");
 			for( int i=0; i<damagedBoxes.length;i++){
 				setDamaged(Integer.parseInt(damagedBoxes[i]), true);
@@ -569,7 +597,6 @@ public class DamageGridAdapter extends DefaultHandler
 	}
 		
 	public int getCount() {
-		
 		return mGrids.size();
 	}
 	
@@ -584,6 +611,7 @@ public class DamageGridAdapter extends DefaultHandler
 			gs[i] = new int[]{i,0};
 		}
 		rGrid.mWhereToDamage = gs;
+		rGrid.type = GRID;
 		
 		return rGrid;
 	}
@@ -635,8 +663,11 @@ public class DamageGridAdapter extends DefaultHandler
 		gs[4] = new int[]{6,0};
 		gs[5] = new int[]{8,0};
 		rGrid.mWhereToDamage = gs;
+
+		rGrid.finalize();
 		
 		rGrid.name = name;
+		rGrid.type = SPIRAL;
 		mGrids.put(name, rGrid);
 		return rGrid;
 	}
@@ -654,6 +685,7 @@ public class DamageGridAdapter extends DefaultHandler
 		}
 				
 		rGrid.name = name;
+		rGrid.type = TRACK;
 		
 		for( int i=0; i< damageTracks.length; i++){
 			int track = Integer.parseInt(damageTracks[i]);
@@ -667,6 +699,8 @@ public class DamageGridAdapter extends DefaultHandler
 		
 		rGrid.mWhereToDamage = new int[1][2];
 		rGrid.mWhereToDamage[0] = new int[]{0,0};
+
+		rGrid.finalize();
 		
 		mGrids.put(name, rGrid);
 		return rGrid;
@@ -687,32 +721,27 @@ public class DamageGridAdapter extends DefaultHandler
 		if( rGrid != null){
 			return rGrid;
 		}else{
-			rGrid = new DamageGrid( boxes + 2, highest +1, "");
+			rGrid = new DamageGrid( boxes + 1, highest, "");
 		}
 		rGrid.name = name;
+		rGrid.type = UNIT;
 		rGrid.mDamageVertical = false;
 		rGrid.mDamageWraps = false;
 		rGrid.mWhereToDamage = new int[highest][2];
 
 		String[] letters = {"A","B","C","D","E","F","G"};
 		
-		rGrid.setBox(1, 0, new GridLocation("L", false));
-		
-		for(int i=1; i<highest+1; i++){
-			rGrid.setBox(0, i, new GridLocation(letters[i-1], false));
-			rGrid.setBox(1, i, sEmpty);
-			rGrid.mWhereToDamage[0] = new int[]{2,i};
+		for(int i=0; i<highest; i++){
+			rGrid.setBox(0, i, new GridLocation(letters[i], false));
+			rGrid.mWhereToDamage[i] = new int[]{1,i};
 			for(int j=0; j<boxes; j++){
-				rGrid.setBox(j+2, i, sEmpty);				
+				rGrid.setBox(j+1, i, sEmpty);				
 			}
 		}
 
+		rGrid.finalize();
 		mGrids.put(name, rGrid);
 		return rGrid;
-	}
-	
-	public PlayableDamageGrid getPlayableGrid(String name){
-		return new PlayableDamageGrid(mGrids.get(name));
 	}
 	
 	public boolean isEmpty() {

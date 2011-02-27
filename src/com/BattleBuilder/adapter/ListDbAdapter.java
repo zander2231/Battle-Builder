@@ -44,16 +44,9 @@ public class ListDbAdapter {
     /**
      * Database creation sql statement
      */
-    private static final String DATABASE_CREATE =
-            "create table armies (_id integer primary key autoincrement, "
-                    + "title text not null, " 
-                    + "faction text not null, "
-                    + "army text not null, "
-                    + "points integer not null);";
-
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE = "armies";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = DatabaseInfo.getVersion();
 
     private final Context mCtx;
 
@@ -65,21 +58,30 @@ public class ListDbAdapter {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-
-            db.execSQL(DATABASE_CREATE);
+            String[] creates = DatabaseInfo.getCreate();
+            for( int i=0; i<creates.length; i++){
+                db.execSQL(creates[i]);
+            }
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+            String[] upgrades = DatabaseInfo.getUpgrade();
+            for( int i=0; i<upgrades.length; i++){
+                db.execSQL(upgrades[i]);
+            }
             onCreate(db);
         }
     }
     
     static String getTableName(){
     	return DATABASE_TABLE;
+    }
+    
+    static int getDatabaseVer(){
+    	return DATABASE_VERSION;
     }
 
     /**

@@ -542,25 +542,19 @@ public class ModelAdapter extends DefaultHandler
 				return;
 			}
 			
+			int diff = newVal - oldVal;
+			
 			switch(fa){
 				case FA_CASTER:
-					mCurrentCasters += (newVal - oldVal);
-					if( (newVal - oldVal) > 0){
-						mCurrentPoints -= cost[locationIndex];
-					}else{
-						mCurrentPoints += cost[locationIndex];
-					}
+					mCurrentCasters += (diff);
+					mCurrentPoints -= cost[locationIndex] * diff;
 					num_used[locationIndex]=newVal;
 					break;
 				case FA_TOTEM_1:
 				case FA_TOTEM_2:
-					mCurrentTotems += (newVal - oldVal);
+					mCurrentTotems += (diff);
 				default:
-					if( (newVal - oldVal) > 0){
-						mCurrentPoints += cost[locationIndex];
-					}else{
-						mCurrentPoints -= cost[locationIndex];
-					}
+					mCurrentPoints += cost[locationIndex] * diff;
 					num_used[locationIndex]=newVal;
 			}
 			
@@ -624,7 +618,7 @@ public class ModelAdapter extends DefaultHandler
 		Model m;
 		for( int i=0; i< models.length; i++){
 			String [] byComma= models[i].split(",");
-			m = mNameIndex.get(byComma[0]);
+			m = mModels.get(Integer.parseInt(byComma[0]));
 			for( int j=1; j< byComma.length; j++){
 //				Log.d(TAG, m.toString() + "num: " + byComma[j]);
 				m.updateCount(j-1, Integer.parseInt(byComma[j]), 0, false);
@@ -645,7 +639,7 @@ public class ModelAdapter extends DefaultHandler
 		StringBuilder st = new StringBuilder();
 		while(army.hasNext()){
 			m = army.next();
-			st.append(m.name);
+			st.append(m.row_id);
 			for(int i=0; i< m.num_used.length; i++){
 				st.append("," + m.num_used[i]);
 			}

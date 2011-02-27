@@ -46,6 +46,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class ArmyEdit extends ListActivity
 	implements OnItemSelectedListener, ModelAdapter.OnFaUpdateListener{
 
+    public static final String ARMY_CHANGED = "armyChanged";
+	
 	private EditText mArmyName;
 	private TextView mPointsRemaining;
 	private Spinner mFactionName;
@@ -54,7 +56,7 @@ public class ArmyEdit extends ListActivity
 	private PointLevelAdapter mPointAdapter;
 	private ModelAdapter mModelAdapter;
     private Long mRowId=0l;
-        
+
     private ListDbAdapter mDbHelper=null;
 
     @Override
@@ -232,7 +234,6 @@ public class ArmyEdit extends ListActivity
     }
     
     private void playArmy(){
-    	saveState();
         Intent i = new Intent(this, PlayingList.class);
         i.putExtra(ListDbAdapter.KEY_ROWID, mRowId);
         startActivity(i);

@@ -72,11 +72,6 @@ public class DamageGridView extends View{
 		mRedPaint.setTextAlign(Paint.Align.CENTER);
 
 	}
-
-	public void setGrid( String grid ){
-		mGrid = DamageGridAdapter.getAdapter(getContext()).getPlayableGrid(grid);
-		mBoxIsDamaged = new boolean[mGrid.getSizeX() * mGrid.getSizeY()];
-	}
 	
 	public void setGrid( PlayableDamageGrid grid ){
 		mGrid = grid;
@@ -100,6 +95,7 @@ public class DamageGridView extends View{
 		final int boxH = h/sizeY;
 		final int startAtX =boxPad + getPaddingLeft() + (w -(boxW * sizeX))/2;
 		final int startAtY =boxPad + getPaddingTop() + (h- (boxH * sizeY))/2;
+		final int numModels = mGrid.getNumModels();
 
 		mLightPaint.setTextSize(boxH * 2 / 3);
 		mDarkPaint.setTextSize(boxH * 2 / 3);
@@ -109,7 +105,8 @@ public class DamageGridView extends View{
 		boolean boxDamaged;
 		String boxName;
 				
-		for( int i=0; i<sizeY; i++){		mRedPaint.setTextSize(boxH);
+		for( int i=0; i<sizeY; i++){
+			mRedPaint.setTextSize(boxH);
 
 			for( int j=0; j<sizeX; j++){
 				boxEnabled = mGrid.getEnabled(j, i);
@@ -138,13 +135,6 @@ public class DamageGridView extends View{
 			}
 		}
 	}
-		
-//	public void dealDamage(int colNum, int damage){
-//		int[] spotsDamaged = mGrid.dealDamage(colNum, damage);
-//		for( int i=0; i< spotsDamaged.length; i++){
-//			mBoxIsDamaged[ spotsDamaged[i] ] = true;
-//		}
-//	}
 	
 	public int getNumTracks(){
 		return mGrid.getBaseGrid().getNumTracks();

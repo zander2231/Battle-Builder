@@ -17,6 +17,8 @@ package com.BattleBuilder.adapter;
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.util.HashMap;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,10 +26,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import java.lang.System;
 
 import com.BattleBuilder.adapter.ListDbAdapter;
 import com.BattleBuilder.adapter.ModelAdapter.Model;
+import com.BattleBuilder.adapter.DatabaseInfo;
 
 public class GameDBAdapter{
 /**
@@ -36,13 +38,13 @@ public class GameDBAdapter{
  * A game is retrieved by asking for all the entries that match a game id
  */
     public static final String KEY_MODEL_ID = "model";
+    public static final String KEY_MODEL_TYPE = "type";
     public static final String KEY_NAME = "name";
     public static final String KEY_DAMAGE = "damage";
-    public static final String KEY_GAME_ID = "game";
     public static final String KEY_ARMY_ID = "army";
     public static final String KEY_ROWID = "_id";
 
-    private static final String TAG = "ListDbAdapter";
+    private static final String TAG = "GameDBAdapter";
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
 	private ModelAdapter mModelAdapter;
@@ -50,18 +52,10 @@ public class GameDBAdapter{
     /**
      * Database creation sql statement
      */
-    private static final String DATABASE_CREATE =
-            "create table armies (_id integer primary key autoincrement, "
-                    + "model integer not null, " 
-                    + "damage text not null, "
-                    + "game text not null, "
-                    + "name text not null, "
-                    + "army integer not null);";
-
     private static final String DATABASE_NAME = "data";
     private static final String GAMES_TABLE = "games";
     private static final String LISTS_TABLE = ListDbAdapter.getTableName();
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = DatabaseInfo.getVersion();
 
     private final Context mCtx;
 
@@ -73,14 +67,20 @@ public class GameDBAdapter{
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(DATABASE_CREATE);
+            String[] creates = DatabaseInfo.getCreate();
+            for( int i=0; i<creates.length; i++){
+                db.execSQL(creates[i]);
+            }
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS " + GAMES_TABLE);
+            String[] upgrades = DatabaseInfo.getUpgrade();
+            for( int i=0; i<upgrades.length; i++){
+                db.execSQL(upgrades[i]);
+            }
             onCreate(db);
         }
     }
@@ -136,30 +136,35 @@ public class GameDBAdapter{
 	    if (mCursor != null) {
 	        mCursor.moveToFirst();
 	        
-	        long timeStamp = System.currentTimeMillis();
-	        int army_id = mCursor.getInt(mCursor.getColumnIndexOrThrow(ListDbAdapter.KEY_ROWID));
 	        String[] models = mCursor.getString(mCursor.getColumnIndexOrThrow(ListDbAdapter.KEY_ARMY)).split(";");
 	        
 			Model m;
 			for( int i=0; i < models.length; i++){
 				String [] byComma= models[i].split(",");
-				m = mModelAdapter.getItemByName( byComma[0] );
-				int total = m.getTotal();
-				for( int j=0; j < total; j++){
-					ContentValues initialValues = new ContentValues();
-			        initialValues.put(KEY_ARMY_ID, army_id);
-			        initialValues.put(KEY_MODEL_ID, m.row_id);
-			        initialValues.put(KEY_GAME_ID, timeStamp);
-			        initialValues.put(KEY_DAMAGE, "");
-			        if( total > 1){
-				        initialValues.put(KEY_NAME, m.name + " " + j);
-			        }else{
-				        initialValues.put(KEY_NAME, m.name);
-			        }
-			        mDb.insert(GAMES_TABLE, null, initialValues);
+				m = (Model)mModelAdapter.getItem( Integer.parseInt(byComma[0]) );
+
+				int used = 1;
+				for( int j=0; j < m.num_used.length; j++){
+					int total = m.num_used[j];
+					for( int k=0; k< total; k++){
+					
+						ContentValues initialValues = new ContentValues();
+				        initialValues.put(KEY_ARMY_ID, armyListID);
+				        initialValues.put(KEY_MODEL_ID, m.row_id);
+				        initialValues.put(KEY_MODEL_TYPE, j);
+				        initialValues.put(KEY_DAMAGE, "");
+				        if( total > 1){
+					        initialValues.put(KEY_NAME, m.name + " " + (used));
+				        }else{
+					        initialValues.put(KEY_NAME, m.name);
+				        }
+				        
+				        used++;
+				        mDb.insert(GAMES_TABLE, null, initialValues);
+					}
 				}
 			}				
-		    return timeStamp;
+		    return armyListID;
 	    }else{
 	    	//error stuff
 	    	return 0l;
@@ -172,7 +177,7 @@ public class GameDBAdapter{
      * @return the number of rows deleted
      */
     public int deleteGame(long gameID) {
-    	return mDb.delete(GAMES_TABLE, KEY_GAME_ID + "=" + gameID, null);
+    	return mDb.delete(GAMES_TABLE, KEY_ARMY_ID + "=" + gameID, null);
     }
 
     /**
@@ -182,17 +187,16 @@ public class GameDBAdapter{
      */
     public Cursor fetchAllGames() {
         return mDb.query(GAMES_TABLE,
-        				 new String[] {KEY_ROWID, KEY_MODEL_ID, KEY_NAME, KEY_DAMAGE, KEY_ARMY_ID, KEY_GAME_ID },
-        				 null, null, null, null, KEY_GAME_ID);
+        				 new String[] {KEY_ROWID, KEY_MODEL_ID, KEY_MODEL_TYPE, KEY_NAME, KEY_DAMAGE, KEY_ARMY_ID },
+        				 null, null, null, null, KEY_ARMY_ID);
     }
     
     /**
-     * Return a Cursor over the list of armies in the database
      * 
-     * @return Cursor over all notes
+     * @return Cursor over all models of a given game
      */
     public Cursor fetchGame(long gameID) {
-        return mDb.query(GAMES_TABLE, new String[] { KEY_ROWID, KEY_MODEL_ID, KEY_NAME, KEY_DAMAGE }, KEY_GAME_ID + "=" + gameID,
+        return mDb.query(GAMES_TABLE, new String[] { KEY_ROWID, KEY_MODEL_ID, KEY_MODEL_TYPE, KEY_NAME, KEY_DAMAGE }, KEY_ARMY_ID + "=" + gameID,
         		null, null, null, KEY_MODEL_ID);
     }
 
@@ -205,7 +209,7 @@ public class GameDBAdapter{
      */
     public Cursor fetchGameItem(long rowId) throws SQLException {
         Cursor mCursor =
-                mDb.query(true, GAMES_TABLE, new String[] {KEY_ROWID },
+                mDb.query(true, GAMES_TABLE, new String[] { KEY_ROWID, KEY_MODEL_ID, KEY_MODEL_TYPE, KEY_NAME, KEY_DAMAGE },
                         KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
@@ -242,6 +246,87 @@ public class GameDBAdapter{
         ContentValues args = new ContentValues();
         args.put(KEY_DAMAGE, "");
 
-        return mDb.update(GAMES_TABLE, args, KEY_GAME_ID + "=" + gameID, null) > 0;
+        return mDb.update(GAMES_TABLE, args, KEY_ARMY_ID + "=" + gameID, null) > 0;
     }
+    
+    /**
+     * Check to see the game entered needs to be reloaded because the army it was made for has
+     * changed since the game was started.
+     * 
+     * @param game
+     * @return
+     */
+    public boolean needReload(long gameID){
+    	Cursor game = fetchGame(gameID);
+    	if( game != null){
+    		game.moveToFirst();
+    	}else{
+    		return true;
+    	}
+    	
+    	Cursor army =
+            mDb.query(true, LISTS_TABLE, new String[] {
+	            		ListDbAdapter.KEY_ROWID,
+	            		ListDbAdapter.KEY_TITLE,
+	            		ListDbAdapter.KEY_ARMY
+            		},
+            		ListDbAdapter.KEY_ROWID + "=" + gameID, null,
+                    null, null, null, null);
+	    if (army != null) {
+	    	army.moveToFirst();
+	    }
+	    else{
+	    	return true;
+	    }
+
+	    String[] newArmy = army.getString(army.getColumnIndexOrThrow(ListDbAdapter.KEY_ARMY)).split(";");
+	    army.close();
+	    HashMap<Integer, String[]> armyHash = new HashMap<Integer,String[]>();
+	    for( int i=0; i<newArmy.length; i++){
+		    String[] newModel = newArmy[i].split(",");
+		    armyHash.put(Integer.parseInt(newModel[0]), newModel);
+	    }
+	    
+	    int modelCount = 1;
+	    int modelIndex = game.getInt(game.getColumnIndex(GameDBAdapter.KEY_MODEL_ID));
+    	while( game.moveToNext() ){
+    		int currentID = game.getInt(game.getColumnIndex(GameDBAdapter.KEY_MODEL_ID));
+    		if( currentID != modelIndex ){
+    			String[] newModel = armyHash.get(modelIndex);
+    			if( newModel == null){
+    				game.close();
+    				return true;
+    			}
+    			
+    			int total = Integer.parseInt(newModel[1]) + Integer.parseInt(newModel[2]) + Integer.parseInt(newModel[3]);
+    			if( total != modelCount){
+    				game.close();
+    				return true;
+    			}
+    			modelCount=1;
+    			modelIndex=currentID;
+    		}else{
+    			modelCount++;
+    		}
+    	}
+    	
+    	//This has to be done once more because the game cursor will run out one early.
+    	String[] newModel = armyHash.get(modelIndex);
+		if( newModel == null){
+			game.close();
+			return true;
+		}
+		
+		int total = Integer.parseInt(newModel[1]) + Integer.parseInt(newModel[2]) + Integer.parseInt(newModel[3]);
+		if( total != modelCount){
+			game.close();
+			return true;
+		}
+    	
+		game.close();
+    	return false;
+    	
+    }
+
+    
 }

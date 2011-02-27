@@ -17,9 +17,11 @@ package com.BattleBuilder;
 *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import com.BattleBuilder.adapter.DamageGridAdapter;
 import com.BattleBuilder.adapter.GameDBAdapter;
 import com.BattleBuilder.adapter.ListDbAdapter;
 import com.BattleBuilder.adapter.ModelAdapter;
+import com.BattleBuilder.adapter.DamageGridAdapter.DamageGrid;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -57,37 +59,45 @@ public class PlayingList extends ListActivity {
         
         long armyID = 0l;
         if( savedInstanceState != null ){
-        	mGameID = savedInstanceState.getLong(GameDBAdapter.KEY_GAME_ID);
         	armyID = savedInstanceState.getLong(ListDbAdapter.KEY_ROWID);
+        	mGameID = savedInstanceState.getLong(GameDBAdapter.KEY_ARMY_ID);
         }else{
         	Bundle extras = getIntent().getExtras();
         	if( extras != null ){
-            	mGameID = extras.getLong(GameDBAdapter.KEY_GAME_ID);
         		armyID = extras.getLong(ListDbAdapter.KEY_ROWID);
+        		mGameID = extras.getLong(GameDBAdapter.KEY_ARMY_ID);
         	}else{
         		//show some error and go back
         		finish();
+        		
         	}
         }
         
-        if( mGameID == 0 && armyID !=0){
+        Cursor game = mDbHelper.fetchGame(armyID);
+        if( mGameID == 0 && armyID != 0 && game.getCount() <= 0){
         	mGameID = mDbHelper.createGame(armyID);
+        }else{
+        	mGameID = armyID;
+        	if( mDbHelper.needReload(mGameID) ){
+            	mDbHelper.deleteGame(mGameID);
+            	mDbHelper.createGame(mGameID);
+            }
         }
+        game.close();
         
         mGameModels = new GameModelAdapter(this);        
         setListAdapter(mGameModels);
-        fillData();
     }
-    
+        
     private void fillData() {
-
+    	this.onContentChanged();
     }
 
     @Override
     protected void onSaveInstanceState( Bundle outState){
     	super.onSaveInstanceState(outState);
     	if( mGameID != 0l){
-        	outState.putLong(GameDBAdapter.KEY_GAME_ID, mGameID);
+        	outState.putLong(GameDBAdapter.KEY_ARMY_ID, mGameID);
     	}
     }
     
@@ -115,6 +125,7 @@ public class PlayingList extends ListActivity {
             return true;
 	    case RESTART_ID:
 	    	// add are you sure
+	        fillData();
 	    	mDbHelper.restartGame(mGameID);
 	        return true;
 	    case DELETE_ID:
@@ -188,6 +199,7 @@ public class PlayingList extends ListActivity {
 		
 		public class ViewHolder{
 			public TextView name;
+			public TextView num;
 			public TextView damageRemaining;
 		}
 
@@ -199,6 +211,7 @@ public class PlayingList extends ListActivity {
 				
 				holder = new ViewHolder();
 				holder.name = (TextView) convertView.findViewById(R.id.play_model_name);
+				holder.num = (TextView) convertView.findViewById(R.id.play_model_num);
 				holder.damageRemaining = (TextView) convertView.findViewById(R.id.damage_remaining);
 				convertView.setTag(holder);	
 			}else{
@@ -206,13 +219,35 @@ public class PlayingList extends ListActivity {
 			}
 			
 			mModels.moveToPosition(position);
-			holder.name.setText(mModels.getString(mModels.getColumnIndex(GameDBAdapter.KEY_NAME)) );
 			ModelAdapter.Model model = 
 				(ModelAdapter.Model)mModelsMaster.getItem(mModels.getInt(mModels.getColumnIndex(GameDBAdapter.KEY_MODEL_ID)) );
-			
-			int damaged = mModels.getString(mModels.getColumnIndex(GameDBAdapter.KEY_DAMAGE)).split(";").length;
 
-			holder.damageRemaining.setText(model.getTotal()-damaged + "/" + model.getTotal());
+			holder.name.setText(mModels.getString(mModels.getColumnIndex(GameDBAdapter.KEY_NAME)));
+
+			int modelType = mModels.getInt(mModels.getColumnIndex(GameDBAdapter.KEY_MODEL_TYPE));
+			int numModels = 1;
+			if( (model.damage == null || model.damage.type == DamageGridAdapter.UNIT) && model.num_models.length > modelType){
+				numModels = model.num_models[modelType];
+				holder.num.setText( "Num:" + numModels );
+			}else{
+				holder.num.setText("");
+			}
+			
+			String damages =  mModels.getString(mModels.getColumnIndex(GameDBAdapter.KEY_DAMAGE));
+			int damage = 0;
+			if( !damages.equalsIgnoreCase("")){
+				damage = damages.split(";").length;
+			}
+
+			if( model.damage == null){
+				holder.damageRemaining.setText( R.string.no_damage );
+			}else if(model.damage.type == DamageGridAdapter.UNIT){
+				int enabled = (model.damage.getSizeX() -1) * numModels;
+				holder.damageRemaining.setText(enabled - damage + "/" + enabled );
+			}
+			else{
+				holder.damageRemaining.setText(model.damage.totalEnabled()-damage + "/" + model.damage.totalEnabled());
+			}
 			
 			return convertView;
 		}
