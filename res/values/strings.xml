@@ -20,4 +20,9 @@
     <string name="end_game">End Game</string>
     <string name="restart_game">Restart Game</string>
     <string name="no_damage">No Damage</string>
+    <string name="no_amries">No Armies</string>
+    <string name="intro_author">By\nAlex Badion</string>
+    <string name="intro_disclaimer">Warmachine, Hordes and Privateer Press are Trademark Privateer Press.\nWarmachine, Hordes and all model names and info are copyright Privateer Press all rights reserved.</string>
+    <string name="loading_damage">Damage Grids</string>
+    <string name="loading">Loading: </string>
 </resources>

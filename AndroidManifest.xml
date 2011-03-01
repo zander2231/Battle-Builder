@@ -4,7 +4,7 @@
       android:versionCode="1"
       android:versionName="1.0">
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-        <activity android:name=".MainScreen"
+        <activity android:name="Intro"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -12,9 +12,10 @@
             </intent-filter>
         </activity>
 
-    <activity android:name="ArmyEdit"></activity>
-    <activity android:name="ModelDamage"></activity>
-    <activity android:name="PlayingList"></activity>
+    <activity android:name=".MainScreen"></activity>
+    <activity android:name=".ArmyEdit"></activity>
+    <activity android:name=".ModelDamage"></activity>
+    <activity android:name=".PlayingList"></activity>
 </application>
 <uses-sdk android:minSdkVersion="4" />
 

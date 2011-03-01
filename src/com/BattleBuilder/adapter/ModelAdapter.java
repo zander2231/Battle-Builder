@@ -18,14 +18,10 @@ package com.BattleBuilder.adapter;
 */
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedSet;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -41,32 +37,22 @@ import com.BattleBuilder.R;
 import com.BattleBuilder.adapter.DamageGridAdapter.DamageGrid;
 import com.BattleBuilder.adapter.FactionAdapter.Faction;
 import com.BattleBuilder.widget.NumberPicker;
-import com.BattleBuilder.widget.NumberPicker.OnChangedListener;
+import com.BattleBuilder.Intro;
 
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources.NotFoundException;
-import android.database.Cursor;
 import android.database.DataSetObserver;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Handler;
-import android.util.Log;
-import android.util.MonthDisplayHelper;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 public class ModelAdapter extends DefaultHandler 
 	implements ListAdapter, NumberPicker.OnChangedListener
-{
+{	
 	public interface OnFaUpdateListener{
 		public void updateFAs();
 	}
@@ -158,12 +144,59 @@ public class ModelAdapter extends DefaultHandler
 	}
 	
 	private static ModelAdapter mSingle = null;
+	private static Intro mProgress = null;
+	private static ArmyFileLoader mLoader = null;
+	private static final long ROW_SIZE = 968l;
 	
 	public static ModelAdapter getAdapter(Context context){
 		if( mSingle == null){
 			mSingle = new ModelAdapter(context);
 		}
 		return mSingle;
+	}
+	
+	public static void load(Intro intro){
+		mLoader = new ArmyFileLoader();
+		mProgress = intro;
+		mLoader.execute(null);
+	}
+	
+	private static class ArmyFileLoader extends AsyncTask<Void, Long, Long> {
+		long mTotalLength = 0;
+		String mLoadedModel = "";
+		
+		@Override
+		protected Long doInBackground(Void... params) {
+			ModelAdapter.getAdapter(mProgress);
+			return 1l;
+	    }
+	
+	    protected void onProgressUpdate(Long... progress) {
+	    	if( mTotalLength != 0){
+		    	mProgress.onProgressUpdate((int)(progress[0]*100l/mTotalLength), mLoadedModel );
+	    	}else{
+		    	mProgress.onProgressUpdate(0, mLoadedModel );
+	    	}
+	    }
+	
+	    protected void onPostExecute(Long result) {
+	    	mProgress.onLoadFinish();
+	    	mLoader = null;
+	    	mProgress = null;
+	    }
+	    
+	    public void setProgress(String modelName, int progress){
+	    	mLoadedModel = modelName;
+	    	publishProgress( new Long[]{new Long(progress), mTotalLength});
+	    }
+	    
+	    public void setLength(long totalLength){
+	    	if( totalLength == AssetFileDescriptor.UNKNOWN_LENGTH ){
+		    	mTotalLength = 0;
+	    	}else{
+		    	mTotalLength = totalLength;
+	    	}
+	    }
 	}
 
 	private ModelAdapter(Context context)
@@ -177,6 +210,9 @@ public class ModelAdapter extends DefaultHandler
 		mContext = context;
 		mInflater = LayoutInflater.from(context);
 
+		if(mLoader != null){
+			mLoader.setProgress(context.getString(R.string.loading_damage), 1);
+		}
 		mDamageGrids = DamageGridAdapter.getAdapter(context);
 		
 		mFactionToModels = new HashMap<String, int[]>();
@@ -195,7 +231,11 @@ public class ModelAdapter extends DefaultHandler
 			xr = sp.getXMLReader();
 			xr.setContentHandler(this);
 			xr.setErrorHandler(this);
-			xr.parse(new InputSource(mContext.getResources().openRawResource(R.raw.models)));
+			AssetFileDescriptor models = (mContext.getResources().openRawResourceFd(R.raw.models));
+			if(mLoader!=null){
+				mLoader.setLength( models.getLength() / ROW_SIZE);
+			}
+			xr.parse(new InputSource(models.createInputStream()));
 			replaceStrings();
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -323,7 +363,9 @@ public class ModelAdapter extends DefaultHandler
 			if( state.intValue() == STATE_IN_MODEL ){
 				mModelBuffer.row_id = mModels.size();
 				mModels.add( mModelBuffer );
-//				Log.d(TAG, "Model added: " + mModelBuffer);
+				if(mLoader!=null){
+					mLoader.setProgress(mModelBuffer.name, mModelBuffer.row_id);
+				}
 			}
 			mState &= ~(state.intValue());
 		}

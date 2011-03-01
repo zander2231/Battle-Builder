@@ -13,7 +13,8 @@
 			android:text="@string/army_name" />
 		<EditText android:id="@+id/army_name" 
 		  android:layout_width="wrap_content"
-  		  android:layout_height="wrap_content" 
+  		  android:layout_height="wrap_content"
+          android:singleLine="true"
 		  android:layout_weight="1"/>
 	</LinearLayout>
 
