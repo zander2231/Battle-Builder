@@ -15,15 +15,17 @@ public class Intro extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState){
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.main);
+	    setContentView(R.layout.intro);
 	    
-	    ProgressBar mProgress = (ProgressBar)findViewById(R.id.load_progress);
+	    mProgress = (ProgressBar)findViewById(R.id.load_progress);
 	    mProgress.setIndeterminate(true);
+	    mProgressInfo = (TextView)findViewById(R.id.load_text);
 	    
         ModelAdapter.load(this);
 	}
 	
 	public void onProgressUpdate(int progress, String workingOn){
+		mProgress.setIndeterminate(false);
 		mProgress.setProgress(progress);
 		mProgressInfo.setText(getString(R.string.loading) + workingOn);
 	}
