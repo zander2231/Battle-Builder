@@ -25,9 +25,17 @@ public class Intro extends Activity{
 	}
 	
 	public void onProgressUpdate(int progress, String workingOn){
-		mProgress.setIndeterminate(false);
 		mProgress.setProgress(progress);
 		mProgressInfo.setText(getString(R.string.loading) + workingOn);
+	}
+	
+	public void onLengthUpdate(int length){
+		if( length == 0){
+			mProgress.setIndeterminate(true);
+		}else{
+			mProgress.setIndeterminate(false);
+			mProgress.setProgress(1);
+		}
 	}
 	
 	public void onLoadFinish(){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <models>
+	<total>300</total>
 	<model name="Commander Coleman Stryker" fa="caster" pn="108" plays="cygnar" damage="17" pc="6" conflicts="Lord Commander Stryker"/>
 	<model name="Lord Commander Stryker" fa="caster" pn="109" plays="cygnar" damage="17" pc="6" conflicts="Commander Coleman Stryker"/>
 	<model name="Captain Victory Haley" pc="5" fa="caster" damage="15" pn="110" plays="cygnar" conflicts="Major Victoria Haley"/>

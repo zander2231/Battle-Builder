@@ -22,8 +22,10 @@
     <ProgressBar android:id="@+id/load_progress"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	android:progressDrawable="@+android:drawable/progress_horizontal"
-    	android:indeterminateDrawable="@+android:drawable/progress_indeterminate_horizontal"/>
+    	android:indeterminateDrawable="@+android:drawable/progress_indeterminate_horizontal"
+		android:progressDrawable="@+android:drawable/progress_horizontal"
+        style="?android:attr/progressBarStyleHorizontal" 
+    	android:max="100"/>
     <TextView android:id="@+id/load_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"/>

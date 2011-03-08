@@ -18,6 +18,7 @@ package com.BattleBuilder.adapter;
 */
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -82,6 +83,7 @@ public class ModelAdapter extends DefaultHandler
 	/* Efficiency is the name of the game here... */
 	private int mState;
 	private static final int STATE_IN_MODEL = (1 << 2);
+	private static final int STATE_IN_TOTAL = ((1 << 2) + 1);
 	
 	public static final int ATTR_NAME=1;
 	public static final int ATTR_POINTS=2;
@@ -117,6 +119,7 @@ public class ModelAdapter extends DefaultHandler
 	{
 		mStateMap = new HashMap<String, Integer>();
 		mStateMap.put("model", new Integer(STATE_IN_MODEL));
+		mStateMap.put("total", new Integer(STATE_IN_TOTAL));
 
 		mAttrMap = new HashMap<String, Integer>();
 		mAttrMap.put("name", new Integer(ATTR_NAME));
@@ -161,25 +164,26 @@ public class ModelAdapter extends DefaultHandler
 		mLoader.execute(null);
 	}
 	
-	private static class ArmyFileLoader extends AsyncTask<Void, Long, Long> {
-		long mTotalLength = 0;
+	private static class ArmyFileLoader extends AsyncTask<Void, Integer, Integer> {
+		int mTotalLength = 0;
 		String mLoadedModel = "";
 		
 		@Override
-		protected Long doInBackground(Void... params) {
+		protected Integer doInBackground(Void... params) {
 			ModelAdapter.getAdapter(mProgress);
-			return 1l;
+			return 1;
 	    }
 	
-	    protected void onProgressUpdate(Long... progress) {
+	    protected void onProgressUpdate(Integer... progress) {
 	    	if( mTotalLength != 0){
-		    	mProgress.onProgressUpdate((int)(progress[0]*100l/mTotalLength), mLoadedModel );
+	    		int p = (int)(progress[0]*100l/mTotalLength);
+		    	mProgress.onProgressUpdate(p, mLoadedModel );
 	    	}else{
 		    	mProgress.onProgressUpdate(0, mLoadedModel );
 	    	}
 	    }
 	
-	    protected void onPostExecute(Long result) {
+	    protected void onPostExecute(Integer result) {
 	    	mProgress.onLoadFinish();
 	    	mLoader = null;
 	    	mProgress = null;
@@ -187,15 +191,16 @@ public class ModelAdapter extends DefaultHandler
 	    
 	    public void setProgress(String modelName, int progress){
 	    	mLoadedModel = modelName;
-	    	publishProgress( new Long[]{new Long(progress), mTotalLength});
+	    	publishProgress( new Integer[]{new Integer(progress), mTotalLength});
 	    }
 	    
-	    public void setLength(long totalLength){
+	    public void setLength(int totalLength){
 	    	if( totalLength == AssetFileDescriptor.UNKNOWN_LENGTH ){
 		    	mTotalLength = 0;
 	    	}else{
 		    	mTotalLength = totalLength;
 	    	}
+	    	mProgress.onLengthUpdate(mTotalLength);
 	    }
 	}
 
@@ -231,11 +236,8 @@ public class ModelAdapter extends DefaultHandler
 			xr = sp.getXMLReader();
 			xr.setContentHandler(this);
 			xr.setErrorHandler(this);
-			AssetFileDescriptor models = (mContext.getResources().openRawResourceFd(R.raw.models));
-			if(mLoader!=null){
-				mLoader.setLength( models.getLength() / ROW_SIZE);
-			}
-			xr.parse(new InputSource(models.createInputStream()));
+			InputStream models = mContext.getResources().openRawResource(R.raw.models);
+			xr.parse(new InputSource(models));
 			replaceStrings();
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -251,7 +253,15 @@ public class ModelAdapter extends DefaultHandler
 			e.printStackTrace();
 		}	
 	}
+	
+	public void characters(char[] text, int start, int length){
 
+		if( (mState & STATE_IN_TOTAL) > 0 && mLoader != null){
+			int total = Integer.parseInt( new String(text, start, length) );
+			mLoader.setLength(total);
+		}
+	}
+	
 	public void startElement(String uri, String name, String qName,
 			Attributes attrs)	
 	/* These will only be used during init */
@@ -263,7 +273,6 @@ public class ModelAdapter extends DefaultHandler
 		if (state != null)
 		{
 			mState |= state.intValue();
-
 			if (state.intValue() == STATE_IN_MODEL){
 				mModelBuffer = new Model();
 				int local;
